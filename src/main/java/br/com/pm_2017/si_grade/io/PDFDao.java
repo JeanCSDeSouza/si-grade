@@ -7,15 +7,29 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.text.PDFTextStripper;
 
+import br.com.pm_2017.si_grade.exceptions.PDFIsEncryptedException;
+
 public class PDFDao {
 	
 	PDDocument document;
 	
-	public File fileOpen(String fileName){
+	public PDFDao(String filePath){
+		File file = fileOpen(filePath);
+		if( file.canRead() ){
+			PDDocument pddDocument = loadDocument(file);
+			if(pddDocument.isEncrypted())
+				throw new PDFIsEncryptedException("Could not read pdf: Is encrypted");
+			document = pddDocument;
+		}else {
+			throw new IllegalArgumentException("Could not read pdf: InvalidPath");
+		}
+	}
+	
+	private File fileOpen(String fileName){
 		return new File(fileName);
 	}
 	
-	public void loadDocument(File file){
+	private PDDocument loadDocument(File file){
 		PDDocument document = null;
 		try{
 			document = PDDocument.load( file );
@@ -30,7 +44,8 @@ public class PDFDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.document = document;
+		
+		return document;
 	}
 	
 	public void closeDocument() throws IOException {
@@ -42,6 +57,7 @@ public class PDFDao {
 	}
 	
 	public String getText() throws InvalidPasswordException, IOException{
+		//Condition to test null just in case
 		if( document.equals( null ) ) 
 			return null;
 		else {
