@@ -5,27 +5,52 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class PDFDaoTeste{
-	PDFDao op = new PDFDao();
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 	
-	@Test
-	public void fileOpenTest() throws IOException {
-		assertNotNull("Should not be null",op.fileOpen("historico.pdf"));
+	PDFIO op;
+	File file;
+	
+	@Before
+	public void setUp() throws Exception {
+		op = new PDFIO("historico.pdf");
 	}
 	
-	@Test
-	public void loadDocumentTest() throws IOException {
-		op.loadDocument( op.fileOpen( "historico.pdf" ) ) ;
-		assertNotNull( "Should not be null", op.getDocument());
+	@After
+	public void close() throws Exception {
 		op.closeDocument();
 	}
 	
+	public void pdfIOEncriptedPdfTest() {
+		
+	}
+	
+	@Test
+	public void pdfIONullTest() {
+		thrown.expect(IllegalArgumentException.class);
+		PDFIO op = new PDFIO("e.pdf");
+	}
+	
+	/**
+	 * Method built to be used at the getTextTest
+	 * @return the text of a pdf document in a string
+	 * @throws IOException
+	 */
 	public String PDFBoxPreTest() throws IOException {
 		PDDocument document = null;
         String fileName = "historico.pdf";
@@ -47,12 +72,17 @@ public class PDFDaoTeste{
 	
 	@Test
 	public void getTextTest() throws InvalidPasswordException, IOException {
-		op.loadDocument( op.fileOpen( "historico.pdf" ) ) ;
 		String pdfText = op.getText();
 		assertNotNull( "Should not be null", pdfText);
 		assertEquals("failure - strings are not equal", pdfText, PDFBoxPreTest());
 		
 	}
-	
+	@Test
+	public void getLinesListTest() throws IOException {
+		String pdfText = PDFBoxPreTest();
+		List<String> list = new ArrayList<String>();
+		Collections.addAll(list, pdfText.split(System.lineSeparator()));
+		assertEquals("Failure - Lists are not qual", list, op.getLinesList());
+	}
 	
 }
