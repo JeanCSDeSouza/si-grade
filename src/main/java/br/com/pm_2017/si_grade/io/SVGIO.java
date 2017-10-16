@@ -53,6 +53,11 @@ public class SVGIO {
 	public BufferedReader getDocument() {
 		return document;
 	}
+
+	public Object getText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

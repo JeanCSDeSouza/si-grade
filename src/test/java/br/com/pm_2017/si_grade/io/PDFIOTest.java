@@ -19,7 +19,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class PDFDaoTeste{
+public class PDFIOTest{
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 	
@@ -36,6 +36,7 @@ public class PDFDaoTeste{
 		op.closeDocument();
 	}
 	
+	@Ignore
 	public void pdfIOEncriptedPdfTest() {
 		
 	}
