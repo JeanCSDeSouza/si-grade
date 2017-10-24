@@ -1,11 +1,18 @@
 package br.com.pm_2017.si_grade.io;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -21,19 +28,13 @@ public class SVGIOTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		sio = new SVGIO("grade.svg");
-	}
-	
-	@After
-	public void close() throws Exception {
-		sio.closeDocument();
+		sio = new SVGIO("svg.svg");
 	}
 	
 	@Test
 	public void InstantiationTest() throws IOException {
-		SVGIO sio = new SVGIO("grade.svg");
+		SVGIO sio = new SVGIO("svg.svg");
 		assertNotNull("Should not be null", sio);
-		sio.closeDocument();
 	}
 	
 	@Test
@@ -42,20 +43,21 @@ public class SVGIOTest {
 		SVGIO sio = new SVGIO("grade");
 	}
 	
-	public String svgLinesPreTest() throws IOException {
-		FileReader fr = new FileReader("grade.svg");
-		BufferedReader br = new BufferedReader(fr);
-		String sparring = null;
-		while( br.ready() )
-			sparring = br.readLine();
-		br.close();
-		return sparring;
+	public List<String> svgLinesPreTest(){
+		Path wiki_path = Paths.get("svg.svg");
+
+	    Charset charset = Charset.forName("UTF-8");
+	    List<String> lines = null;
+	    try {
+	      lines = Files.readAllLines(wiki_path, charset);
+	    } catch (IOException e) {
+	      System.out.println(e);
+	    }
+		return lines;
 	}
-	
 	@Test
-	public void svgLinesTest() {
-		String preTest = svgLinesPreTest();
-		assertNull("Should not be null", sio.getText());
-		assertEquals("failure - strings are not equal", preTest, sio.getText());
+	public void getDocumentTest() throws IOException {
+		assertNotNull("Should not be null", sio.getDocument());
+		assertEquals("failure - strings are not equal", svgLinesPreTest(), sio.getDocument());
 	}
 }

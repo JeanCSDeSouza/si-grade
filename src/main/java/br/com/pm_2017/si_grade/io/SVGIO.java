@@ -1,26 +1,23 @@
 package br.com.pm_2017.si_grade.io;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
-
-import br.com.pm_2017.si_grade.exceptions.PDFIsEncryptedException;
 
 public class SVGIO {
-	BufferedReader document;
+	List<String> document;
 	File path;
 	
 	public SVGIO(String filePath) {
-		File file = fileOpen(filePath);
-		if( file.canRead() ){
-			path = file;
-			BufferedReader BufferedDocument = loadDocument(file);
-			document =  BufferedDocument;
+		Path file = fileOpen(filePath);
+		if( file.toFile().canRead() ){
+			Charset charset = Charset.forName("UTF-8");
+			document = loadDocument(file, charset);
 		}else {
 			throw new IllegalArgumentException("Could not read pdf: InvalidPath");
 		}	
@@ -31,33 +28,29 @@ public class SVGIO {
 	 * @param fileName the path to instantiate the java.io.file
 	 * @return java.io.File 
 	 */
-	private File fileOpen(String fileName){
-		return new File(fileName);
+	private Path fileOpen(String fileName){
+		 return Paths.get(fileName);
 	}
 	
-	private BufferedReader loadDocument(File file){
-		BufferedReader br = null;
+	/**
+	 * Responsible for opening the document and returning its lines 
+	 * @param file the path of the document 
+	 * @param charset the chatset used in the document
+	 * @return
+	 */
+	private List<String> loadDocument(Path file, Charset charset){
+		List<String> text = null;
 		try {
-			FileReader fr = new FileReader(file);
-			br = new BufferedReader(fr);
+			text = Files.readAllLines(file, charset);	
 		}catch(IOException ioe) {
 			ioe.getMessage();
 		}
-		return br;
+		return text;
 	}
 	
-	public void closeDocument() throws IOException {
-		document.close();
-	}
 
-	public BufferedReader getDocument() {
+	public List<String> getDocument() {
 		return document;
 	}
-
-	public Object getText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	
 }
