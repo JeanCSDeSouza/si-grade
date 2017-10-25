@@ -28,8 +28,12 @@ public class RegexConstants {
 	 * @param frase String line of the historic pdf
 	 * @return true only if the line follows the desired pattern 
 	 */
-	public static boolean isDiscipline(String frase) {
+	public static boolean isPdfDiscipline(String frase) {
+		return getPdfDisciplineMatcher(frase).find();
+	}
+	
+	public static Matcher getPdfDisciplineMatcher(String frase) {
 		Matcher matcher = FIND_DISCIPLINES_ON_PDF.matcher(frase);
-		return matcher.find();
+		return matcher;
 	}
 }
