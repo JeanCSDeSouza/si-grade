@@ -2,7 +2,7 @@ package br.com.pm_2017.si_grade.model;
 
 /**
  * Represents the disciplines of the S.I course, used
- * for count how many times the student did the disciplines and 
+ * to count how many times the student has done the disciplines and 
  * comparison reasons 
  * <p>
  * @author Araragi-san 
@@ -40,7 +40,7 @@ public class Discipline {
 	/**
 	 * increases the number of times a disciplines was coursed in 1
 	 */
-	public void accountFailure() {
+	public void attempt() {
 		this.timesAttended++;
 	}
 

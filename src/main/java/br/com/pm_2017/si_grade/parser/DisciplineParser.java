@@ -30,7 +30,7 @@ public class DisciplineParser {
 						Matcher matcher = RegexConstants.getPdfDisciplineMatcher(line);
 						if (matcher.find( ) ) {
 							discipline = new Discipline( line.substring( matcher.start( ), matcher.end( ) ) );
-							discipline.accountFailure();
+							discipline.attempt();
 							if( line.contains( DisciplineStatus.APROVADO.getStatusName( ) ) 
 									| line.contains( DisciplineStatus.DISPENSA_SEM_NOTA.getStatusName( ) )
 									| line.contains( DisciplineStatus.DISPENSA_COM_NOTA.getStatusName( ) ) ) {							 
