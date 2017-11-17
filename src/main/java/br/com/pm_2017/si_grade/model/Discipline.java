@@ -1,22 +1,78 @@
 package br.com.pm_2017.si_grade.model;
 
+/**
+ * Represents the disciplines of the S.I course, used
+ * for count how many times the student did the disciplines and 
+ * comparison reasons 
+ * <p>
+ * @author Araragi-san 
+ */
 public class Discipline {
-	private String codigo;
-	private boolean situacao;
+	private String code;
+	private int situation;
+	private int timesAttended;
 	
-	public Discipline(String codigo, boolean situacao) {
-		super();
-		this.codigo = codigo;
-		this.situacao = situacao;
+	public Discipline() {
+	}
+	public Discipline(String code) {
+		this.code = code;
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public String getCode() {
+		return code;
 	}
 
-	public boolean getSituacao() {
-		return situacao;
+	public int getSituation() {
+		return situation;
+	}
+
+	public void setSituation(int situation) {
+		this.situation = situation;
+	}
+
+	public int getTimesAttended() {
+		return timesAttended;
 	}
 	
-	
+	public void setTimesAttended(int timesAttended) {
+		this.timesAttended = timesAttended;
+	}
+	/**
+	 * increases the number of times a disciplines was coursed in 1
+	 */
+	public void accountFailure() {
+		this.timesAttended++;
+	}
+
+	@Override
+	public String toString() {
+		return "Discipline [code=" + code + ", situation=" + situation + ", timesAttended=" + timesAttended + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		return result;
+	}
+	/**
+	 * compares disciplines by code
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Discipline other = (Discipline) obj;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		return true;
+	}
 }

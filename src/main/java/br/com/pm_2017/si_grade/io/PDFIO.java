@@ -26,10 +26,10 @@ public class PDFIO {
 	public PDFIO(String filePath){
 		File file = fileOpen(filePath);
 		if( file.canRead() ){
-			PDDocument pddDocument = loadDocument(file);
-			if(pddDocument.isEncrypted())
+			PDDocument pdDocument = loadDocument(file);
+			if(pdDocument.isEncrypted())
 				throw new PDFIsEncryptedException("Could not read pdf: Is encrypted");
-			document = pddDocument;
+			document = pdDocument;
 		}else {
 			throw new IllegalArgumentException("Could not read pdf: InvalidPath");
 		}
@@ -46,7 +46,7 @@ public class PDFIO {
 	
 	/**
 	 * Opens a PDFBox document using the java.io.File passed as parameter
-	 * @param file, a java.io.File needed by PDFBox
+	 * @param file, a java.io.File needed by PDFBox PDDocument
 	 * @return a PDDocument that encapsulates the PDF document 
 	 */
 	private PDDocument loadDocument(File file){

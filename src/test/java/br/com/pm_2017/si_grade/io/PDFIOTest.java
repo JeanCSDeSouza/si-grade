@@ -2,6 +2,11 @@ package br.com.pm_2017.si_grade.io;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,21 +24,22 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import br.com.pm_2017.si_grade.exceptions.PDFIsEncryptedException;
+
 public class PDFIOTest{
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 	
-	PDFIO op;
-	File file;
+	PDFIO pdfIo;
 	
 	@Before
 	public void setUp() throws Exception {
-		op = new PDFIO("historico.pdf");
+		pdfIo = new PDFIO("historico.pdf");
 	}
 	
 	@After
 	public void close() throws Exception {
-		op.closeDocument();
+		pdfIo.closeDocument();
 	}
 	
 	@Ignore
@@ -73,17 +79,9 @@ public class PDFIOTest{
 	
 	@Test
 	public void getTextTest() throws InvalidPasswordException, IOException {
-		String pdfText = op.getText();
+		String pdfText = pdfIo.getText();
 		assertNotNull( "Should not be null", pdfText);
 		assertEquals("failure - strings are not equal", pdfText, PDFBoxPreTest());
-		
-	}
-	@Test
-	public void getLinesListTest() throws IOException {
-		String pdfText = PDFBoxPreTest();
-		List<String> list = new ArrayList<String>();
-		Collections.addAll(list, pdfText.split(System.lineSeparator()));
-		assertEquals("Failure - Lists are not qual", list, op.getLinesList());
 	}
 	
 }
