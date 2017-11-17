@@ -24,24 +24,11 @@ public class PDFIO {
 	 * @throws  PDFIsEncryptedException if the PDF is encrypted
 	 */
 	public PDFIO(String filePath){
-		File file = fileOpen(filePath);
-		if( file.canRead() ){
-			PDDocument pdDocument = loadDocument(file);
-			if(pdDocument.isEncrypted())
-				throw new PDFIsEncryptedException("Could not read pdf: Is encrypted");
-			document = pdDocument;
-		}else {
+		File file = new File(filePath);
+		if( file.canRead() )
+			document = loadDocument(file);
+		else 
 			throw new IllegalArgumentException("Could not read pdf: InvalidPath");
-		}
-	}
-	
-	/**
-	 * Instantiate a java.io.File and returns it. 
-	 * @param fileName the path to instantiate the java.io.file
-	 * @return java.io.File 
-	 */
-	private File fileOpen(String fileName){
-		return new File(fileName);
 	}
 	
 	/**
@@ -55,13 +42,11 @@ public class PDFIO {
 			document = PDDocument.load( file );
 			if(document.isEncrypted()) {
 				this.document = null;
+				throw new PDFIsEncryptedException("Could not read pdf: Is encrypted");
 			}
-
 		} catch (InvalidPasswordException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return document;
@@ -83,7 +68,6 @@ public class PDFIO {
 	 * @return String containing the text of the given PDFDocument
 	 */
 	public String getText(){
-		//Condition to test null just in case
 		if( document.equals( null ) ) 
 			return null;
 		else {
@@ -97,7 +81,6 @@ public class PDFIO {
 				pdfText = stripper.getText( document );
 
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return pdfText;
@@ -114,7 +97,6 @@ public class PDFIO {
 	 * @return the List containing the lines of a PDF document
 	 */
 	public List<String> getLinesList() {
-		// TODO Auto-generated method stub
 		List<String> list = new ArrayList<String>();
 		Collections.addAll(list, getText().split(System.lineSeparator()));
 		return list;
