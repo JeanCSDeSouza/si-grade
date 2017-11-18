@@ -1,11 +1,11 @@
 package br.com.pm_2017.si_grade.utils;
 
-public enum DisciplineConstants {
+public enum CurricularGradeConstants {
 	TOTAL_NUMBER_DISCIPLINES(50);
 	
 	private int value;
 
-	private DisciplineConstants(int value) {
+	private CurricularGradeConstants(int value) {
 		this.value = value;
 	}
 

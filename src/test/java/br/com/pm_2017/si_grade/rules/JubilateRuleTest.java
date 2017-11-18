@@ -30,20 +30,9 @@ public class JubilateRuleTest {
 	
 	@Before
 	public void setUp( ) throws Exception {
-		//MockitoAnnotations.initMocks(this);
-		jb = new JubilateRule();
-		//student = new Student();
-		//discipline = new Discipline();				
+		jb = new JubilateRule();				
 	}
 	
-	/*@Test
-	public void JubilateRuleEmptyTest( ) {
-		thrown.expect( EmptyCollectionException.class );
-		Mockito.when( disciplines.isEmpty() ).thenReturn( true ); 
-		student.setDisciplines( disciplines );
-		jb.isJubilate( student );
-	}
-	*/
 	@Test
 	public void JubilateRuleTrueTest( ) {
 		disciplines = new HashMap<String, Discipline>( );

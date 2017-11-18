@@ -5,7 +5,7 @@ import br.com.pm_2017.si_grade.exceptions.EmptyCollectionException;
 import br.com.pm_2017.si_grade.exceptions.StudentNullException;
 import br.com.pm_2017.si_grade.model.Discipline;
 import br.com.pm_2017.si_grade.model.Student;
-import br.com.pm_2017.si_grade.utils.DisciplineConstants;
+import br.com.pm_2017.si_grade.utils.CurricularGradeConstants;
 import br.com.pm_2017.si_grade.utils.DisciplineStatus;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
 
@@ -30,7 +30,7 @@ public class RegisteredDisciplinesRule {
 	
 	public int remaining(Student student) {
 		int numberDisciplines = student.getDisciplines().size() - attending(student);
-		int totalDisciplines = DisciplineConstants.TOTAL_NUMBER_DISCIPLINES.getValue();
+		int totalDisciplines = CurricularGradeConstants.TOTAL_NUMBER_DISCIPLINES.getValue();
 		
 		int remainingDisciplines = totalDisciplines - numberDisciplines;
 		

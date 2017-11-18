@@ -5,7 +5,7 @@ package br.com.pm_2017.si_grade.utils;
  * text used by the parse class
  * @author Araragi-san
  */
-public enum StudentConstants {
+public enum PdfStudentConstants {
 	STUDENT_NAME("Nome Aluno:", 12, -1),
 	//The line where this information is, was previously tested having 103 characters 
 	STUDENT_CRA( "Coeficiente de Rendimento Geral", 96, 102 ),
@@ -18,7 +18,7 @@ public enum StudentConstants {
 	int begin;
 	int end;
 	
-	StudentConstants(String value, int begin, int end){
+	PdfStudentConstants(String value, int begin, int end){
 		this.value = value;
 		this.begin = begin;
 		this.end = end;

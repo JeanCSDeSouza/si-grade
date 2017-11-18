@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.pm_2017.si_grade.model.Student;
 import br.com.pm_2017.si_grade.utils.PdfCharacterRaplacer;
-import br.com.pm_2017.si_grade.utils.StudentConstants;
+import br.com.pm_2017.si_grade.utils.PdfStudentConstants;
 /**
  * The class deals with all the parsing logic to instantiate 
  * an student from the PDF text
@@ -27,22 +27,22 @@ public class StudentParser {
 			Student student = new Student();
 			List<Float> periodsCr = new ArrayList<Float>();
 			document.forEach( ( line ) -> {
-				if( line.contains( StudentConstants.STUDENT_PERIOD_CR.getValue( ) ) )
+				if( line.contains( PdfStudentConstants.STUDENT_PERIOD_CR.getValue( ) ) )
 					periodsCr.add( Float.parseFloat( line.substring( 
-							line.length( ) -  StudentConstants.STUDENT_PERIOD_CR.getBegin( ),
-							line.length( ) - StudentConstants.STUDENT_PERIOD_CR.getEnd( ) )
+							line.length( ) -  PdfStudentConstants.STUDENT_PERIOD_CR.getBegin( ),
+							line.length( ) - PdfStudentConstants.STUDENT_PERIOD_CR.getEnd( ) )
 							.replace( PdfCharacterRaplacer.PDF_DECIMAL_MARKER.getValue( ), PdfCharacterRaplacer.PDF_DECIMAL_MARKER_REPLACER.getValue( ) ) ) );				
 				else {
-					if( line.contains( StudentConstants.STUDENT_NAME.getValue( ) ) )
-						student.setName( line.substring( StudentConstants.STUDENT_NAME.getBegin( ) ) );
+					if( line.contains( PdfStudentConstants.STUDENT_NAME.getValue( ) ) )
+						student.setName( line.substring( PdfStudentConstants.STUDENT_NAME.getBegin( ) ) );
 					else {
-						if( line.contains( StudentConstants.STUDENT_REGISTRY.getValue( ) ) )
-							student.setRegistry( line.substring( StudentConstants.STUDENT_REGISTRY.getBegin(),
-									StudentConstants.STUDENT_REGISTRY.getEnd( ) ) );
+						if( line.contains( PdfStudentConstants.STUDENT_REGISTRY.getValue( ) ) )
+							student.setRegistry( line.substring( PdfStudentConstants.STUDENT_REGISTRY.getBegin(),
+									PdfStudentConstants.STUDENT_REGISTRY.getEnd( ) ) );
 						else {
-							if( line.contains( StudentConstants.STUDENT_CRA.getValue( ) ) ) 
-								student.setCra( Float.parseFloat( ( line.substring( StudentConstants.STUDENT_CRA.getBegin(),
-										StudentConstants.STUDENT_CRA.getEnd( ) ) )
+							if( line.contains( PdfStudentConstants.STUDENT_CRA.getValue( ) ) ) 
+								student.setCra( Float.parseFloat( ( line.substring( PdfStudentConstants.STUDENT_CRA.getBegin(),
+										PdfStudentConstants.STUDENT_CRA.getEnd( ) ) )
 										.replace( PdfCharacterRaplacer.PDF_DECIMAL_MARKER.getValue( ), PdfCharacterRaplacer.PDF_DECIMAL_MARKER_REPLACER.getValue( ) ) ) ); 
 						}
 					}
