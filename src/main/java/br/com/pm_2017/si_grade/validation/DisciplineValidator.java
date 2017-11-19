@@ -11,7 +11,6 @@ import br.com.pm_2017.si_grade.utils.StudentFieldsConstants;
  */
 public class DisciplineValidator implements Strategy {
 
-	@Override
 	public boolean execute(Student student) {
 		if( ( checkStudentNullError(student) ) || ( checkStudentMapError(student) ) || ( checkStudentNameError(student) ) || ( checkStudentResitryError(student) ) || ( checkStudentPeriodsCrError(student) ) )
 			return true;

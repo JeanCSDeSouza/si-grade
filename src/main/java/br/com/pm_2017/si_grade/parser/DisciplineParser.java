@@ -38,9 +38,14 @@ public class DisciplineParser {
 							}else {
 								if( line.contains( DisciplineStatus.REPROVADO.getStatusName( ) ) ) {
 									discipline.setSituation( DisciplineStatus.REPROVADO.getStatus( ) );
+									discipline.fail();
 								}else {
 									if( line.contains( DisciplineStatus.MATRICULA.getStatusName( ) ) ) {
 										discipline.setSituation( DisciplineStatus.MATRICULA.getStatus( ) );
+									} else {
+										if(line.contains(DisciplineStatus.TRANCADO.getStatusName())) {
+											discipline.setSituation(DisciplineStatus.REPROVADO.getStatus());
+										}
 									}
 								}							
 							}

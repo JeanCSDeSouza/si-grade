@@ -12,7 +12,8 @@ public enum DisciplineStatus {
 	DISPENSA_COM_NOTA("DIS - Dispensa com nota", 1),
 	APROVADO("APV- Aprovado", 1),
 	MATRICULA("ASC - Matrícula", -1),
-	REPROVADO("RPV- Reprovado", 0);
+	REPROVADO("RPV- Reprovado", 0),
+	TRANCADO("TRA - Trancamento", -2);
 	
 	private String statusName;
 	private int status;

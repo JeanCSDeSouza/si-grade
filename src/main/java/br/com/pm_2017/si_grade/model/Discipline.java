@@ -11,6 +11,7 @@ public class Discipline {
 	private String code;
 	private int situation;
 	private int timesAttended;
+	private int timesFailure;
 	
 	public Discipline() {
 	}
@@ -74,5 +75,15 @@ public class Discipline {
 		} else if (!code.equals(other.code))
 			return false;
 		return true;
+	}
+	public int getTimesFailure() {
+		return timesFailure;
+	}
+	
+	public void setTimesFailure(int timesFailure) {
+		this.timesFailure = timesFailure;
+	}
+	public void fail() {
+		this.timesFailure++;
 	}
 }

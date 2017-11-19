@@ -17,7 +17,6 @@ public class CraRule implements Strategy{
 			return false;
 	}
 
-	@Override
 	public boolean execute(Student student) {
 		// TODO Auto-generated method stub
 		return false;

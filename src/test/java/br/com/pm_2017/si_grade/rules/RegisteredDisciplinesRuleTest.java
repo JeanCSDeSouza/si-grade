@@ -6,28 +6,35 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.pm_2017.si_grade.model.Discipline;
 import br.com.pm_2017.si_grade.model.Student;
+import br.com.pm_2017.si_grade.utils.DisciplineStatus;
 
 public class RegisteredDisciplinesRuleTest {
 
 	RegisteredDisciplinesRule rd;
+	Student student;
+	Map<String, Discipline> disciplines;
 	
-	public RegisteredDisciplinesRuleTest() {
+	@Before
+	public void setUp() {
 		rd = new RegisteredDisciplinesRule();
+		student = new Student();
+		disciplines = new HashMap<String, Discipline>();
 	}
 	
+	/**
+	 * Test for 2 attending disciplines
+	 */
 	@Test
 	public void lessThanNeededDisciplinesMustReturnFalse() {	
-		Student student = new Student();
 		Discipline d1 = new Discipline();
 		Discipline d2 = new Discipline();
-		d1.setSituation(-1);
-		d2.setSituation(-1);
-		
-		Map<String, Discipline> disciplines = new HashMap<String, Discipline>();
+		d1.setSituation(DisciplineStatus.MATRICULA.getStatus());
+		d2.setSituation(DisciplineStatus.MATRICULA.getStatus());
 		
 		disciplines.put("d1", d1);
 		disciplines.put("d2", d2);
@@ -36,20 +43,20 @@ public class RegisteredDisciplinesRuleTest {
 		assertFalse(rd.rule(student));
 	}
 	
+	/**
+	 * Test for 4 attending disciplines
+	 */
 	@Test
 	public void moreThanNeededDisciplinesMustReturnTrue() {	
-		Student student = new Student();
 		Discipline d1 = new Discipline();
 		Discipline d2 = new Discipline();
 		Discipline d3 = new Discipline();
 		Discipline d4 = new Discipline();
-		d1.setSituation(-1);
-		d2.setSituation(-1);
-		d3.setSituation(-1);
-		d4.setSituation(-1);
-		
-		Map<String, Discipline> disciplines = new HashMap<String, Discipline>();
-		
+		d1.setSituation(DisciplineStatus.MATRICULA.getStatus());
+		d2.setSituation(DisciplineStatus.MATRICULA.getStatus());
+		d3.setSituation(DisciplineStatus.MATRICULA.getStatus());
+		d4.setSituation(DisciplineStatus.MATRICULA.getStatus());
+				
 		disciplines.put("d1", d1);
 		disciplines.put("d2", d2);
 		disciplines.put("d3", d3);
@@ -59,18 +66,18 @@ public class RegisteredDisciplinesRuleTest {
 		assertTrue(rd.rule(student));
 	}
 	
+	/**
+	 * Test for 3 attending disciplines
+	 */
 	@Test
 	public void equallyNeededDisciplinesMustReturnTrue() {
-		Student student = new Student();
 		Discipline d1 = new Discipline();
 		Discipline d2 = new Discipline();
 		Discipline d3 = new Discipline();
-		d1.setSituation(-1);
-		d2.setSituation(-1);
-		d3.setSituation(-1);
-		
-		Map<String, Discipline> disciplines = new HashMap<String, Discipline>();
-		
+		d1.setSituation(DisciplineStatus.MATRICULA.getStatus());
+		d2.setSituation(DisciplineStatus.MATRICULA.getStatus());
+		d3.setSituation(DisciplineStatus.MATRICULA.getStatus());
+				
 		disciplines.put("d1", d1);
 		disciplines.put("d2", d2);
 		disciplines.put("d3", d3);
