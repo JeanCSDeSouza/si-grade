@@ -33,7 +33,7 @@ public class DisciplineValidatorTest {
 		assertEquals("Failure - Should be true", true, dv.checkStudentNullError(student));
 	}
 	@Test
-	public void disciplineValidatorStudentMapTrueTest() {
+	public void disciplineValidatorStudentMapEmptyTrueTest() {
 		Student student = new Student();
 		Map<String, Discipline> disciplines;
 	
@@ -56,5 +56,34 @@ public class DisciplineValidatorTest {
 		Student student = new Student();
 		student.setDisciplines(disciplines);
 		assertEquals("Failure - Should be false", false, dv.checkStudentMapError(student));
+	}
+	@Test
+	public void disciplineValidatorStudentNameTrueTest() {
+		Student student = mock(Student.class);
+		when(student.getName()).thenReturn("");
+		assertEquals("Failure - Should be true", true, dv.checkStudentNameError(student));
+		student = new Student();
+		student.setName(null);
+		assertEquals("Failure - Should be true", true, dv.checkStudentNameError(student));
+	}
+	@Test
+	public void disciplineValidatorStudentRegistryTrueTest() {
+		Student student = new Student();
+		student.setRegistry(null);
+		assertEquals("Failure - Should be true", true, dv.checkStudentResitryError(student));
+		student.setRegistry("0000000000");
+		assertEquals("Failure - Should be true", true, dv.checkStudentResitryError(student));
+		student.setRegistry("");
+		assertEquals("Failure - Should be true", true, dv.checkStudentResitryError(student));
+	}
+	@Test
+	public void disciplineValidatorStudentPeriodsCrTrueTest() {
+		List<Float> periodsCr = null;
+		Student student = new Student();
+		student.setPeriodsCr(periodsCr);
+		assertEquals("Failure - Should be true", true, dv.checkStudentPeriodsCrError(student));
+		periodsCr = new ArrayList<Float>();
+		student.setPeriodsCr(periodsCr);
+		assertEquals("Failure - Should be true", true, dv.checkStudentPeriodsCrError(student));
 	}
 }

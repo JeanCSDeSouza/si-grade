@@ -31,19 +31,19 @@ public class DisciplineValidator implements Strategy {
 			return false;
 	}
 	public boolean checkStudentNameError(Student student) {
-		if( ( student.getName().length() == 0 ) || ( student.getName().isEmpty() ) || ( student.getName() == null ) )
+		if( ( student.getName() == null ) || ( student.getName().length() == 0 ) || ( student.getName().isEmpty() ) )
 			return true;
 		else 
 			return false;
 	}
 	public boolean checkStudentResitryError(Student student) {
-		if( ( student.getRegistry().length() != StudentFieldsConstants.REGISTRY_LENGTH.getValue() ) || ( student.getRegistry().isEmpty() ) || ( student.getRegistry() == null ) )
+		if(  ( student.getRegistry() == null ) || ( student.getRegistry().length() != StudentFieldsConstants.REGISTRY_LENGTH.getValue() ) || ( student.getRegistry().isEmpty() ) )
 			return true;
 		else 
 			return false;
 	}
 	public boolean checkStudentPeriodsCrError(Student student) {
-		if( ( student.getPeriodsCr().isEmpty() ) || ( student.getPeriodsCr().size() == 0 ) )
+		if( ( student.getPeriodsCr() == null ) || ( student.getPeriodsCr().isEmpty() ) || ( student.getPeriodsCr().size() == 0 ) )
 			return true;
 		else
 			return false;

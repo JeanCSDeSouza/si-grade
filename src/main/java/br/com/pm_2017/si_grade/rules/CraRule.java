@@ -8,17 +8,26 @@ import br.com.pm_2017.si_grade.utils.RuleConstants;
 
 public class CraRule implements Strategy{
 	
-	public boolean CraGreaterThan(Student student){
+	@Override
+	public boolean execute(Student student) {
 		if(student == null)
 			throw new StudentNullException(ExceptionConstants.STUDENT_NULL.getMessage());
-		if(student.getCra() >= RuleConstants.CRA_SUPERIOR_LIMIT.getValue())
+		if( craGreaterThan(student) )
 			return true;
 		else 
 			return false;
 	}
+<<<<<<< Updated upstream
 
 	public boolean execute(Student student) {
 		// TODO Auto-generated method stub
 		return false;
+=======
+	public boolean craGreaterThan(Student student){
+		if(student.getCra() >= RuleConstants.CRA_SUPERIOR_LIMIT.getValue())
+			return true;
+		else 
+			return false;
+>>>>>>> Stashed changes
 	}
 }

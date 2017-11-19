@@ -3,6 +3,9 @@ package br.com.pm_2017.si_grade.model;
 import java.util.List;
 import java.util.Map;
 
+import br.com.pm_2017.si_grade.utils.CurricularGradeConstants;
+import br.com.pm_2017.si_grade.utils.DisciplineStatus;
+
 public class Student {
 	private String name;
 	private float cra;
@@ -73,6 +76,28 @@ public class Student {
 				+ ", yearOfRegistry=" + yearOfRegistry + ", disciplines=" + disciplines + "]";
 	}
 
+	public int remaining() {
+		int numberDisciplines = this.disciplines.size() - attending();
+		int totalDisciplines = CurricularGradeConstants.TOTAL_NUMBER_DISCIPLINES.getValue();
+		
+		int remainingDisciplines = totalDisciplines - numberDisciplines;
+		
+		return remainingDisciplines;
+	}
+	
+	public int attending() {
+		int count = 0;
+		
+		for(Discipline discipline : this.disciplines.values()) 
+			if(discipline.getSituation() == DisciplineStatus.MATRICULA.getStatus())
+				count++;
+		
+		return count;
+	}
+	
+	public int numberOfPeriods() {
+		return this.periodsCr.size();
+	}
 	/*@Override
 	public String toString() {
 		return "Student [name=" + name + ", cra=" + cra + ", registry=" + registry + ", periodsCr=" + periodsCr + "]";
