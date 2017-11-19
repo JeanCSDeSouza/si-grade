@@ -40,7 +40,7 @@ public class RegisteredDisciplinesRuleTest {
 		disciplines.put("d2", d2);
 		student.setDisciplines(disciplines);
 		
-		assertFalse(rd.rule(student));
+		assertFalse(rd.execute(student));
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class RegisteredDisciplinesRuleTest {
 		disciplines.put("d4", d4);
 		student.setDisciplines(disciplines);
 		
-		assertTrue(rd.rule(student));
+		assertTrue(rd.execute(student));
 	}
 	
 	/**
@@ -83,6 +83,6 @@ public class RegisteredDisciplinesRuleTest {
 		disciplines.put("d3", d3);
 		student.setDisciplines(disciplines);
 		
-		assertTrue(rd.rule(student));
+		assertTrue(rd.execute(student));
 	}
 }

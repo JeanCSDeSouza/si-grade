@@ -50,7 +50,7 @@ public class JubilateRuleTest {
 	 * Test for CRA=3.9 and Fails=4
 	 */
 	@Test
-	public void lessCraEqualFailsTestMustReturnFalse() {
+	public void lessCraEqualFailsTestMustReturnTrue() {
 		Discipline d1 = new Discipline();
 		d1.setTimesFailure(4);
 
@@ -59,7 +59,7 @@ public class JubilateRuleTest {
 		student.setCra(3.9f);
 		student.setDisciplines(disciplines);
 
-		assertFalse(jb.isJubilate(student));
+		assertTrue(jb.isJubilate(student));
 	}
 
 	/**

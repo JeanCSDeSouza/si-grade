@@ -5,7 +5,6 @@ import java.util.Map;
 import br.com.pm_2017.si_grade.exceptions.EmptyCollectionException;
 import br.com.pm_2017.si_grade.model.Discipline;
 import br.com.pm_2017.si_grade.model.Student;
-import br.com.pm_2017.si_grade.utils.DisciplineStatus;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
 import br.com.pm_2017.si_grade.utils.RuleConstants;
 
@@ -17,7 +16,7 @@ public class JubilateRule {
 	public boolean isJubilate ( Student student ) {
 		if( student.getDisciplines( ).isEmpty( ) || student.getDisciplines( ) == null)
 			throw new EmptyCollectionException( ExceptionConstants.STUDENT_MAP_EMPTY.getMessage() );
-		return ( isCraLessThanCraLimit( student.getCra( ) ) & hasDisciplineFailedMoreThanLimitTimesForJubilation(student.getDisciplines( ) ) );
+		return (isCraLessThanCraLimit( student.getCra() ) & hasDisciplineFailedMoreThanFailLimit(student.getDisciplines() ));
 	}
 	
 	/**
@@ -26,7 +25,7 @@ public class JubilateRule {
 	 * @param disciplinesAttended
 	 * @return True if has a discipline that matches the pattern 
 	 */
-	private boolean hasDisciplineFailedMoreThanLimitTimesForJubilation ( Map<String, Discipline> disciplinesAttended)  {
+	private boolean hasDisciplineFailedMoreThanFailLimit ( Map<String, Discipline> disciplinesAttended)  {
 		for (Discipline discipline : disciplinesAttended.values()) 
 			if(discipline.getTimesFailure() >= 4)
 				return true;
