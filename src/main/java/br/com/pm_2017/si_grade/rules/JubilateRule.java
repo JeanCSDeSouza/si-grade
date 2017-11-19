@@ -17,7 +17,7 @@ public class JubilateRule {
 	public boolean isJubilate ( Student student ) {
 		if( student.getDisciplines( ).isEmpty( ) || student.getDisciplines( ) == null)
 			throw new EmptyCollectionException( ExceptionConstants.STUDENT_MAP_EMPTY.getMessage() );
-		return ( isCraLessThanCraLimit( student.getCra( ) ) & isDisciplineFailedMoreThan4Times(student.getDisciplines( ) ) );
+		return ( isCraLessThanCraLimit( student.getCra( ) ) & hasDisciplineFailedMoreThanLimitTimesForJubilation(student.getDisciplines( ) ) );
 	}
 	
 	/**
@@ -26,7 +26,7 @@ public class JubilateRule {
 	 * @param disciplinesAttended
 	 * @return True if has a discipline that matches the pattern 
 	 */
-	private boolean isDisciplineFailedMoreThan4Times ( Map<String, Discipline> disciplinesAttended)  {
+	private boolean hasDisciplineFailedMoreThanLimitTimesForJubilation ( Map<String, Discipline> disciplinesAttended)  {
 		for (Discipline discipline : disciplinesAttended.values()) 
 			if(discipline.getTimesFailure() >= 4)
 				return true;

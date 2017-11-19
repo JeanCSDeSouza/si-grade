@@ -15,9 +15,9 @@ import br.com.pm_2017.si_grade.utils.DisciplineStatus;
 
 public class RegisteredDisciplinesRuleTest {
 
-	RegisteredDisciplinesRule rd;
-	Student student;
-	Map<String, Discipline> disciplines;
+	private RegisteredDisciplinesRule rd;
+	private Student student;
+	private Map<String, Discipline> disciplines;
 	
 	@Before
 	public void setUp() {
