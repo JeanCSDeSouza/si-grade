@@ -17,17 +17,10 @@ public class CraRule implements Strategy{
 		else 
 			return false;
 	}
-<<<<<<< Updated upstream
-
-	public boolean execute(Student student) {
-		// TODO Auto-generated method stub
-		return false;
-=======
 	public boolean craGreaterThan(Student student){
 		if(student.getCra() >= RuleConstants.CRA_SUPERIOR_LIMIT.getValue())
 			return true;
 		else 
 			return false;
->>>>>>> Stashed changes
 	}
 }
