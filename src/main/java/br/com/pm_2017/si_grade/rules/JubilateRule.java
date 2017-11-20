@@ -14,7 +14,7 @@ import br.com.pm_2017.si_grade.utils.RuleConstants;
 public class JubilateRule {
 
 	public boolean isJubilate ( Student student ) {
-		if( student.getDisciplines( ).isEmpty( ) || student.getDisciplines( ) == null)
+		if( student.getDisciplines( ) == null || student.getDisciplines( ).isEmpty( ) )
 			throw new EmptyCollectionException( ExceptionConstants.STUDENT_MAP_EMPTY.getMessage() );
 		return (isCraLessThanCraLimit( student.getCra() ) & hasDisciplineFailedMoreThanFailLimit(student.getDisciplines() ));
 	}

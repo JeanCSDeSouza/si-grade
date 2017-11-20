@@ -1,7 +1,8 @@
 package br.com.pm_2017.si_grade.utils;
 
 public enum StudentFieldsConstants {
-	REGISTRY_LENGTH(11);
+	REGISTRY_LENGTH(11),
+	MIN_YEAR_OF_REGISTRY(2000);
 	
 	private int value;
 
