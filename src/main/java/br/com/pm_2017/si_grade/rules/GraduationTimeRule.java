@@ -6,8 +6,18 @@ import br.com.pm_2017.si_grade.model.Student;
 import br.com.pm_2017.si_grade.strategy.Strategy;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
 import br.com.pm_2017.si_grade.utils.PeriodsDisciplinesCount;
-
+/**
+ * Checks if a student can fish the graduation in time
+ *
+ */
 public class GraduationTimeRule implements Strategy{
+	/**
+	 * Counts the amount of disciplines made by a student then compares with the 
+	 * amount ( periods the student has multiplied by discipline in each period de-
+	 * fined in the grade) he should have attended. 
+	 * less
+	 * @return True if the student can finish the graduation in time 
+	 */
 	public boolean execute( Student student ) {
 		if(student == null)
 			throw new StudentException( ExceptionConstants.STUDENT_NULL.getMessage() );

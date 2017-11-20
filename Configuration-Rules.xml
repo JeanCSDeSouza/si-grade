@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<years>
+    <rule>
+        <start>1900</start>
+        <end>2013</end>
+        <flag>_2013</flag>
+    </rule>
+    <rule>
+        <start>2014</start>
+        <end>9999</end>
+        <flag>_2014</flag>
+    </rule>  
+</years>

@@ -5,13 +5,13 @@ import br.com.pm_2017.si_grade.exceptions.StudentException;
 import br.com.pm_2017.si_grade.model.Student;
 import br.com.pm_2017.si_grade.strategy.Strategy;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
+import br.com.pm_2017.si_grade.utils.RulePackagePrefix;
 import br.com.pm_2017.si_grade.utils.StudentFieldsConstants;
-import br.com.pm_2017.si_grade.validation.ValidateStudentCurriculumType;
 
 public class IntegralizationPlanPeriodsCrRespectedRule implements Strategy{
-	Strategy curriculumValidator;
+	ReflectedRule reflected;
 	public IntegralizationPlanPeriodsCrRespectedRule(){
-		curriculumValidator = new ValidateStudentCurriculumType();
+		this.reflected = new ReflectedRuleImpl();
 	}
 	public boolean execute(Student student) {
 		if(student == null)
@@ -20,25 +20,6 @@ public class IntegralizationPlanPeriodsCrRespectedRule implements Strategy{
 			throw new EmptyCollectionException( ExceptionConstants.STUDENT_CR_LIST_EMPTY.getMessage() );
 		if( ( student.getYearOfRegistry() < StudentFieldsConstants.MIN_YEAR_OF_REGISTRY.getValue() ) )
 			throw new StudentException(ExceptionConstants.STUDENT_REGISTRY_YEAR_LESS_THAN_LIMIT.getMessage());
-		return isIntegralizationPlanPeriodsCrRespected(student);
-		
-	}
-	public boolean isIntegralizationPlanPeriodsCrRespected(Student student) {
-		if(curriculumValidator.execute(student)) {
-			@SuppressWarnings("unused")
-			int value = student.getPeriodsCr().size();
-			if(student.getPeriodsCr().size() > 7) {
-				for(int i = ( 7 ); i < student.getPeriodsCr().size(); i++) 	
-					if(student.getPeriodsCr().get(i) < ((float) 5.0))
-						return false;
-					return true;
-			}	
-		}else {
-			for(int i = ( 13 - 1 ); i < student.getPeriodsCr().size(); i++)	
-				if(student.getPeriodsCr().get(i) < ((float) 5.0))
-					return false;
-			return true;
-		}
-		return true;
+		return reflected.getReflectedRule(student, RulePackagePrefix.INTEGRALIZATION_PLAN_PERIODS_CR_RESPECTED_RULE.getValue()).execute(student);
 	}
 }

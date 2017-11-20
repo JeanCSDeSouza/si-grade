@@ -106,4 +106,5 @@ public class IntegralizationPlanPeriodsCrRespectedRuleTest {
 		when(student.getYearOfRegistry()).thenReturn(1999);
 		ippcrr.execute(student);
 	}
+	
 }
