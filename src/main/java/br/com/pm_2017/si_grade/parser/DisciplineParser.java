@@ -19,7 +19,7 @@ public class DisciplineParser {
 	 * @param disciplines list filtered from the PDF text 
 	 * @return map of codes pointing to disciplines 
 	 */
-	public Map<String, Discipline> generateDisciplinesMap( List<String> disciplines ){
+	public static Map<String, Discipline> generateDisciplinesMap( List<String> disciplines ){
 		if( disciplines.isEmpty( ) )
 			return null;
 		else {

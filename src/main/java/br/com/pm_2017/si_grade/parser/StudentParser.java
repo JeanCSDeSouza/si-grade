@@ -17,16 +17,16 @@ public class StudentParser {
 	/**
 	 * Parses a Student from the PDF text
 	 * <p>
-	 * @param document The text from the historic PDF 
+	 * @param pdfLines The text from the historic PDF 
 	 * @return Student class without the disciplines list
 	 */
-	public Student generateStudent(List<String> document) {
-		if(document.isEmpty()) {
+	public static Student generateStudent(List<String> pdfLines) {
+		if(pdfLines.isEmpty()) {
 			return null;
 		}else {
 			Student student = new Student();
 			List<Float> periodsCr = new ArrayList<Float>();
-			document.forEach( ( line ) -> {
+			pdfLines.forEach( ( line ) -> {
 				if( line.contains( PdfStudentConstants.STUDENT_PERIOD_CR.getValue( ) ) )
 					periodsCr.add( Float.parseFloat( line.substring( 
 							line.length( ) -  PdfStudentConstants.STUDENT_PERIOD_CR.getBegin( ),

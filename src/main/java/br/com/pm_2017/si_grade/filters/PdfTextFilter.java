@@ -9,11 +9,11 @@ import br.com.pm_2017.si_grade.utils.RegexConstants;
 public class PdfTextFilter {
 	/**
 	 * Filter the text from historic pdf to find disciplines lines
-	 * @param textFromPdf List of the lines of the historic pdf
+	 * @param pdfLines List of the lines of the historic pdf
 	 * @return The disciplines lines in the pdf
 	 */
-	public List<String> filterDisciplinesFromPdfText(List<String> textFromPdf){
-		if( textFromPdf.isEmpty( ) )
+	public static List<String> filterDisciplinesFromPdfText(List<String> pdfLines){
+		if( pdfLines.isEmpty( ) )
 			return null;
 		else {
 			List<String> linesList = new ArrayList<String>( );
@@ -21,7 +21,7 @@ public class PdfTextFilter {
 				if(RegexConstants.isPdfDiscipline(line))
 					linesList.add(line);
 			});*/
-			linesList = textFromPdf.stream( )
+			linesList = pdfLines.stream( )
 					.filter( RegexConstants.getFindDisciplinesOnPdfPattern( ).asPredicate( ) )
 					.collect( Collectors.toList( ) );
 			return linesList;
