@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+<style>
+svg {
+  width: 100%%;
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+}
+.informacaoes{
+  background:blue;
+  position:absolute;
+  left:70%; 
+  top: 5%"
+}
+.gradeSvg{
+  width: 70%;
+}
+</style>
+<title>Grade curricular</title>
+</head>
+<body>
+	<div id="gradeSvg" style="width:70%;position:relative;">
+		${svg}
+	</div>
+	<div id="informacaoes" style="position:absolute;left:70%; top: 5%">
+		<p id="nome">Aluno: ${student.name}</p>
+		<p id="matrícula">Matrícula: ${student.registry}</p>
+		<p id="anoDeMatrícula">Ano de matrícula: ${student.yearOfRegistry}</p>
+		<p id="crA">Cra: ${student.cra}</p>		
+		<p id="periodosCr">Cr dos periodos cursados: ${student.periodsCr}</p>
+		<p>
+		Regras atendidas: 
+			<p id="prazoFormatura">O prazo de formatura esté sendo respeitado? ${graduationTime}</p>
+			<p id="planoIntegralizacao">O aluno precisa apresentar plano de integralização? ${integralization}<p>
+			<p id="planoIntegralizacaoRespeitado">O cr dos periodos definidos no plano de integralização está de acordo? ${integralizationPlanCrs}</p>
+			<p id="cra">O Cra do aluno é maior que 7? ${cra}</p> 
+			<p id="minimoDisciplinasCursadas"> O aluno está cursando ao menos 3 disciplinas: ${registeredDisciplines}</p>
+			<p id="jubilamento">O aluno atingiu o critério de jubilamento? ${jubilate}</p>
+	</div>
+</body>
+</html>

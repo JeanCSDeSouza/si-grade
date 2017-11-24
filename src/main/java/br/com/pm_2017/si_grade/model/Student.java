@@ -5,11 +5,15 @@ import java.util.Map;
 
 import br.com.pm_2017.si_grade.utils.CurricularGradeConstants;
 import br.com.pm_2017.si_grade.utils.DisciplineStatus;
-
+/**
+ * Represents the acting student in the application. Here is 
+ * all the information need of an student by the application
+ */
 public class Student {
 	private String name;
 	private float cra;
 	private String registry;
+	private int numberOfElective;
 	private List<Float> periodsCr;
 	private int yearOfRegistry;
 	Map<String, Discipline> disciplines;
@@ -46,6 +50,14 @@ public class Student {
 		this.registry = registry;
 	}
 	
+	public int getNumberOfElective() {
+		return numberOfElective;
+	}
+
+	public void setNumberOfElective(int numberOfElective) {
+		this.numberOfElective = numberOfElective;
+	}
+
 	public List<Float> getPeriodsCr() {
 		return periodsCr;
 	}
@@ -72,10 +84,14 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [name=" + name + ", cra=" + cra + ", registry=" + registry + ", periodsCr=" + periodsCr
-				+ ", yearOfRegistry=" + yearOfRegistry + ", disciplines=" + disciplines + "]";
+		return "Student [name=" + name + ", cra=" + cra + ", registry=" + registry + ", numberOfElective="
+				+ numberOfElective + ", periodsCr=" + periodsCr + ", yearOfRegistry=" + yearOfRegistry
+				+ ", disciplines=" + disciplines + "]";
 	}
-
+	/**
+	 * Count the remaining disciplines for a student to graduate
+	 * @return int number of remaining disciplines
+	 */
 	public int remaining() {
 		int numberDisciplines = this.disciplines.size() - attending();
 		int totalDisciplines = CurricularGradeConstants.TOTAL_NUMBER_DISCIPLINES.getValue();
@@ -84,7 +100,10 @@ public class Student {
 		
 		return remainingDisciplines;
 	}
-	
+	/**
+	 * Counts the number of disciplines an student are attending ate the moment
+	 * @return
+	 */
 	public int attending() {
 		int count = 0;
 		
@@ -94,13 +113,11 @@ public class Student {
 		
 		return count;
 	}
-	
+	/**
+	 * Returns the number of periods attended by the student 
+	 * @return int number of periods 
+	 */
 	public int numberOfPeriods() {
 		return this.periodsCr.size();
 	}
-	/*@Override
-	public String toString() {
-		return "Student [name=" + name + ", cra=" + cra + ", registry=" + registry + ", periodsCr=" + periodsCr + "]";
-	}
-	*/
 }

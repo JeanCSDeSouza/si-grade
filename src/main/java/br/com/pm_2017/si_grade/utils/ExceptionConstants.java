@@ -6,7 +6,8 @@ public enum ExceptionConstants {
 	STUDENT_REGISTRY_YEAR_LESS_THAN_LIMIT("The year of registry is bellow limit"),
 	STUDENT_CR_LIST_EMPTY("The periodsCr is empty"),
 	RULES_CONFIGURATION_LIST("The configuration list for rules is empty"),
-	STUDENT_REGISTRY_YEAR_LESS_NOT_RECONIZED("The student year of registry is wrong");
+	STUDENT_REGISTRY_YEAR_LESS_NOT_RECONIZED("The student year of registry is wrong"),
+	ILLEGAL_PACKAGE_AT_CONFIGURATION_ANNOTATION_SACANNER("The package name cannot ne null or empty");
 	
 	String message;
 	

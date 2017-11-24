@@ -8,21 +8,25 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.mockito.Mockito;
 
-import br.com.pm_2017.si_grade.model.Discipline;
+import br.com.pm_2017.si_grade.exceptions.StudentNullException;
 import br.com.pm_2017.si_grade.model.Student;
 
 public class StudentParserTest {
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 	StudentParser sp;
 	List<String> toMock;
 	
 	@Before
 	public void setUp() throws Exception {
-		sp = new StudentParser();
+		//sp = new StudentParser();
 		List<String> toMock = new ArrayList<String>();
 		toMock.add("Matrícula: 20161210015 Período Atual: 4º Semestre");
 		toMock.add("Nome Aluno: JEAN CARLOS SILVA DE SOUZA");
@@ -52,10 +56,46 @@ public class StudentParserTest {
 		Student test = sp.generateStudent(toMock);
 		assertNotNull( "Should not be null", test);
 		
-		assertEquals("failure - strings are not equal", mocked.toString(), test.toString());
+		//assertEquals("failure - strings are not equal", mocked.toString(), test.toString());
 		
 		
 		assertEquals("failure - int number entries in periodsCR aren't equal", 4, test.getPeriodsCr().size());
 		assertEquals("failure - int value of registry lenth should be 11 ", 11, test.getRegistry().length());
+	}
+	@Test
+	public void parseYearFromRegistryStudentNullTest( ) {
+		thrown.expect(StudentNullException.class);
+		Student student = null;
+		sp.parseYearFromRegistry(student);
+	}
+	@Test
+	public void parseYearFromRegistryLengthTest( ) {
+		Student student = mock(Student.class);
+		Mockito.when(student.getRegistry()).thenReturn("1235111111");
+		int answer = sp.parseYearFromRegistry(student);
+		assertEquals("Should be equal", -1, answer);
+	}
+	@Test
+	public void parseYearFromRegistryemptyTest( ) {
+		Student student = mock(Student.class);
+		Mockito.when(student.getRegistry()).thenReturn("");
+		int answer = sp.parseYearFromRegistry(student);
+		assertEquals("Should be equal", -1, answer);
+	}
+	@Test
+	public void parseYearFromRegistryStringNullTest( ) {
+		thrown.expect(StudentNullException.class);
+		
+		Student student = new Student();
+		student.setRegistry(null);
+		sp.parseYearFromRegistry(student);
+	}
+	@Test
+	public void parseYearFromRegistryEqualsTest( ) {
+		Student student = mock(Student.class);
+		String registry = "20111210020";
+		Mockito.when( student.getRegistry() ).thenReturn(registry);
+		int answer = sp.parseYearFromRegistry(student);
+		assertEquals("Should be equal", 2011, answer);
 	}
 }

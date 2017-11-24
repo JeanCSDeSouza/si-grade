@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockito.Mockito;
 
 import br.com.pm_2017.si_grade.exceptions.EmptyCollectionException;
 import br.com.pm_2017.si_grade.exceptions.StudentException;

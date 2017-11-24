@@ -65,7 +65,7 @@
 	id="path4700" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" d="m 238.68888,686.19177 157.31766,-0.90412" inkscape:connector-curvature="0" />
     <path 
 	id="path4303" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 70.521713,396.87192 c 142.851677,0 285.703347,0 428.555027,0 24.41136,0 48.82272,0 73.23409,0 7.83574,0 15.67149,0 23.50723,0 0.21928,0 2.6833,0.0291 2.71238,0 0.2131,-0.2131 -0.26956,-0.76935 0,-0.90412 0.43378,-0.2169 5.42475,0.18675 5.42475,0 0,-0.42621 -0.60275,-0.60275 -0.90413,-0.90413" inkscape:connector-curvature="0" />
-    <path id="TIN0107" style="fill:#00ff00;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.22303033px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 3.613225,370.67675 0,53.56837 105.147525,0 0,-53.56837 -105.147525,0 z" inkscape:connector-curvature="0" />
+    <path id="TIN0107" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.22303033px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 3.613225,370.67675 0,53.56837 105.147525,0 0,-53.56837 -105.147525,0 z" inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:45.22793961px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -213,7 +213,7 @@
          y="437.18167"
          style="font-size:10px;text-align:center;text-anchor:middle"
          id="tspan3688">OPTATIVA 03</tspan></text>
-    <path id="OPTATIVA_06" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.22303033px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" inkscape:connector-curvature="0" inkscape:label="#OPTATIVA_06" />
+	<path id="OPTATIVA_06" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.22303033px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 921.29963,369.77263 0,53.56837 105.14757,0 0,-53.56837 -105.14757,0 z" inkscape:connector-curvature="0" inkscape:label="#OPTATIVA_06" />   
     <text
        transform="scale(1.1346861,0.881301)"
        sodipodi:linespacing="125%"
@@ -413,7 +413,7 @@
          x="47.745789"
          y="638.48328"
          style="font-size:10px;text-align:center;text-anchor:middle">Informação </tspan></text>
-    <path id="TIN0010" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.22303033px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 134.71128,515.03525 0,53.56837 105.14752,0 0,-53.56837 -105.14752,0 z" inkscape:connector-curvature="0"/>
+    <path id="TIN0110" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.22303033px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 134.71128,515.03525 0,53.56837 105.14752,0 0,-53.56837 -105.14752,0 z" inkscape:connector-curvature="0"/>
     <text
        transform="scale(1.1346861,0.881301)"
        sodipodi:linespacing="125%"

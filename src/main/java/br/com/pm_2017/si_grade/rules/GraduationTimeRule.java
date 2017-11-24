@@ -3,14 +3,14 @@ package br.com.pm_2017.si_grade.rules;
 import br.com.pm_2017.si_grade.exceptions.EmptyCollectionException;
 import br.com.pm_2017.si_grade.exceptions.StudentException;
 import br.com.pm_2017.si_grade.model.Student;
-import br.com.pm_2017.si_grade.strategy.Strategy;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
 import br.com.pm_2017.si_grade.utils.PeriodsDisciplinesCount;
+import br.com.pm_2017.si_grade.utils.RuleMessageDescriptor;
 /**
- * Checks if a student can fish the graduation in time
+ * Checks if a student can finish the graduation in time
  *
  */
-public class GraduationTimeRule implements Strategy{
+public class GraduationTimeRule implements Rule{
 	/**
 	 * Counts the amount of disciplines made by a student then compares with the 
 	 * amount ( periods the student has multiplied by discipline in each period de-
@@ -25,7 +25,7 @@ public class GraduationTimeRule implements Strategy{
 			throw new EmptyCollectionException( ExceptionConstants.STUDENT_CR_LIST_EMPTY.getMessage() );
 		return isGraduationTimeRespected(student);
 	}
-
+	//The workin implementation of the execute method in this rule
 	public boolean isGraduationTimeRespected(Student student) {
 		int periodsAttended = student.getPeriodsCr().size();
 		int periodsRemaining = (8 - periodsAttended);
@@ -34,5 +34,8 @@ public class GraduationTimeRule implements Strategy{
 			return true;
 		else 
 			return false;
+	}
+	public String getMessage() {
+		return RuleMessageDescriptor.GRADUATION_TIME_MESSAGE.getValue();
 	}
 }

@@ -9,17 +9,17 @@ import java.nio.file.Paths;
 import java.util.List;
 
 
-public class SVGIO {
+public class SiGradeIO{
 	List<String> document;
 	File path;
 	
-	public SVGIO(String filePath) {
+	public SiGradeIO(String filePath) {
 		Path file = fileOpen(filePath);
 		if( file.toFile().canRead() ){
 			Charset charset = Charset.forName("UTF-8");
 			document = loadDocument(file, charset);
 		}else {
-			throw new IllegalArgumentException("Could not read pdf: InvalidPath");
+			throw new IllegalArgumentException("Could not read svg: InvalidPath");
 		}	
 	}
 	
@@ -34,21 +34,25 @@ public class SVGIO {
 	
 	/**
 	 * Responsible for opening the document and returning its lines 
+	 * Ensures that the document is close at the end
 	 * @param file the path of the document 
-	 * @param charset the chatset used in the document
+	 * @param charset the charset used in the document
 	 * @return
 	 */
 	private List<String> loadDocument(Path file, Charset charset){
 		List<String> text = null;
 		try {
-			text = Files.readAllLines(file, charset);	
+			text = Files.readAllLines(file, charset);
 		}catch(IOException ioe) {
 			ioe.getMessage();
 		}
 		return text;
 	}
 	
-
+	/**
+	 * returns the lines list of an document
+	 * @return List<String>
+	 */
 	public List<String> getDocument() {
 		return document;
 	}

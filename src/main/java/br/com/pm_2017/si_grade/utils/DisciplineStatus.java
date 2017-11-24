@@ -2,7 +2,7 @@ package br.com.pm_2017.si_grade.utils;
 
 /** 
  * This class represents the status of a disciplines with 
- * Approved(1), Reproved(0) and Registered(-1). 
+ * Approved(1), Reproved(0), Registered(-1), locked(-2). 
  * Dispensation also counts as approved.
  * <p>
  * @author Araragi-san  
@@ -13,6 +13,7 @@ public enum DisciplineStatus {
 	APROVADO("APV- Aprovado", 1),
 	MATRICULA("ASC - Matrícula", -1),
 	REPROVADO("RPV- Reprovado", 0),
+	REPROVADO_SEM_NOTA("ASC - Reprovado sem nota ", 0),
 	TRANCADO("TRA - Trancamento", -2);
 	
 	private String statusName;

@@ -3,7 +3,12 @@ package br.com.pm_2017.si_grade.configuration;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlAccessType;
-
+/**
+ * Represents the rule element inside years at the configuration xml 
+ * <p>
+ * @author Araragi-san
+ * 
+ **/
 @XmlRootElement(name="rule")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RuleConfiguration {

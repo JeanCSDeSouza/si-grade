@@ -2,6 +2,7 @@ package br.com.pm_2017.si_grade.utils;
 
 public enum RulePackagePrefix {
 	PACAKGE_PREFIX("br.com.pm_2017.si_grade.rules."),
+	RULE_QUALIFIED_PACKAGE_NAME("br.com.pm_2017.si_grade.rules"),
 	INTEGRALIZATION_RULE_CLASS_NAME(".IntegralizationRule"),
 	INTEGRALIZATION_PLAN_PERIODS_CR_RESPECTED_RULE(".IntegralizationPlanPeriodsCrRespectedRule");
 	private String value;

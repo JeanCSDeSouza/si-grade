@@ -2,17 +2,10 @@ package br.com.pm_2017.si_grade.io;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
@@ -24,7 +17,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import br.com.pm_2017.si_grade.exceptions.PDFIsEncryptedException;
 
 public class PDFIOTest{
 	@Rule
@@ -50,6 +42,7 @@ public class PDFIOTest{
 	@Test
 	public void pdfIONullTest() {
 		thrown.expect(IllegalArgumentException.class);
+		@SuppressWarnings("unused")
 		PDFIO op = new PDFIO("e.pdf");
 	}
 	

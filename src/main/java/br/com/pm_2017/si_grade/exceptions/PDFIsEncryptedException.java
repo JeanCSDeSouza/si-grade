@@ -1,5 +1,8 @@
 package br.com.pm_2017.si_grade.exceptions;
-
+/**
+ * Marks the io exception of encrypted PDF as runtime exception
+ *
+ */
 public class PDFIsEncryptedException extends RuntimeException{
 	
 	/**

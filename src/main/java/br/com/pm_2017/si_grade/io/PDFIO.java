@@ -12,7 +12,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import br.com.pm_2017.si_grade.exceptions.PDFIsEncryptedException;
 
-public class PDFIO {
+public class PDFIO{
 
 	PDDocument document;
 

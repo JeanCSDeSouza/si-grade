@@ -17,15 +17,15 @@ import org.junit.rules.ExpectedException;
 import br.com.pm_2017.si_grade.model.Discipline;
 import br.com.pm_2017.si_grade.model.Student;
 
-public class DisciplineValidatorTest {
+public class StudentValidatorTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 	
-	DisciplineValidator dv;
+	StudentValidator dv;
 	
 	@Before
 	public void setUp( ) throws Exception {
-		dv = new DisciplineValidator();	
+		dv = new StudentValidator();	
 	}
 	@Test
 	public void disciplineValidatorStudentNullTest() {

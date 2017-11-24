@@ -40,4 +40,7 @@ public class RegexConstants {
 	public static Pattern getFindDisciplinesOnPdfPattern() {
 		return FIND_DISCIPLINES_ON_PDF;
 	}
-}
+	public static Pattern getFindMeaningfullPathsOnSvg() {
+		return FIND_MEANINGFUL_PATHS_ON_SVG;
+	}
+ }

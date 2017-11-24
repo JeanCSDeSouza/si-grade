@@ -20,10 +20,8 @@ public class CraRuleTest {
 	public void craGreaterThanTrueTest() {
 		Student student = mock(Student.class);
 		when(student.getCra()).thenReturn( (float) 7.0000);
-		assertEquals("Failure - Should be true", true, cra.craGreaterThan(student));
 		assertEquals("Failure - Should be true", true, cra.execute(student));
 		when(student.getCra()).thenReturn( (float) 6.9999);
-		assertEquals("Failure - Should be true", false, cra.craGreaterThan(student));
 		assertEquals("Failure - Should be true", false, cra.execute(student));
 	}
 }

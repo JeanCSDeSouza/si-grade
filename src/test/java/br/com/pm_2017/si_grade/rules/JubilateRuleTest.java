@@ -1,18 +1,13 @@
 package br.com.pm_2017.si_grade.rules;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.mockito.Mockito;
 
 import br.com.pm_2017.si_grade.model.Discipline;
 import br.com.pm_2017.si_grade.model.Student;

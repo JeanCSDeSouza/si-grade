@@ -10,6 +10,7 @@ package br.com.pm_2017.si_grade.model;
 public class Discipline {
 	private String code;
 	private int situation;
+	private int type;
 	private int timesAttended;
 	private int timesFailure;
 	
@@ -31,6 +32,13 @@ public class Discipline {
 		this.situation = situation;
 	}
 
+	public int getType() {
+		return type;
+	}
+	
+	public void setType(int type) {
+		this.type = type;
+	}
 	public int getTimesAttended() {
 		return timesAttended;
 	}
@@ -47,9 +55,10 @@ public class Discipline {
 
 	@Override
 	public String toString() {
-		return "Discipline [code=" + code + ", situation=" + situation + ", timesAttended=" + timesAttended + "]";
+		return "Discipline [code=" + code + ", situation=" + situation + ", type=" + type + ", timesAttended="
+				+ timesAttended + ", timesFailure=" + timesFailure + "]";
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

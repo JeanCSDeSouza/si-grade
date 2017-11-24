@@ -3,9 +3,12 @@ package br.com.pm_2017.si_grade.parser;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.pm_2017.si_grade.exceptions.StudentNullException;
 import br.com.pm_2017.si_grade.model.Student;
+import br.com.pm_2017.si_grade.utils.ExceptionConstants;
 import br.com.pm_2017.si_grade.utils.PdfCharacterRaplacer;
 import br.com.pm_2017.si_grade.utils.PdfStudentConstants;
+import br.com.pm_2017.si_grade.utils.StudentFieldsConstants;
 /**
  * The class deals with all the parsing logic to instantiate 
  * an student from the PDF text
@@ -43,7 +46,14 @@ public class StudentParser {
 							if( line.contains( PdfStudentConstants.STUDENT_CRA.getValue( ) ) ) 
 								student.setCra( Float.parseFloat( ( line.substring( PdfStudentConstants.STUDENT_CRA.getBegin(),
 										PdfStudentConstants.STUDENT_CRA.getEnd( ) ) )
-										.replace( PdfCharacterRaplacer.PDF_DECIMAL_MARKER.getValue( ), PdfCharacterRaplacer.PDF_DECIMAL_MARKER_REPLACER.getValue( ) ) ) ); 
+										.replace( PdfCharacterRaplacer.PDF_DECIMAL_MARKER.getValue( ), PdfCharacterRaplacer.PDF_DECIMAL_MARKER_REPLACER.getValue( ) ) ) );
+							/*else {
+								if(line.contains(PdfStudentConstants.STUDENT_COMPLEMENTARY_DISCIPLINES.getValue())) {
+									String conplementaryHours = line.substring( line.length() - PdfStudentConstants.STUDENT_COMPLEMENTARY_DISCIPLINES.getBegin() , line.length() );
+									int electives = countElectives(conplementaryHours);
+									student.setNumberOfElective(electives);
+								}
+							}*/
 						}
 					}
 				}	
@@ -51,10 +61,35 @@ public class StudentParser {
 			student.setPeriodsCr( periodsCr );
 			int yearOfRegistry = -1;
 			if( !student.getRegistry( ).isEmpty( ) )
-				yearOfRegistry = RegistryParser.parseYearFromRegistry( student );
+				yearOfRegistry = parseYearFromRegistry( student );
 				if( yearOfRegistry != -1 )
 					student.setYearOfResgitry(yearOfRegistry);
 			return student;
 		}
+	}
+	/**
+	 * Parse the student registry year from the 4 first characters from the registry
+	 * <p>
+	 * @param student
+	 * @return The year of registry or -1 if has no registry to parse  
+	 */
+	public static int parseYearFromRegistry( Student student ) {
+		if( student == null || student.getRegistry() == null )
+			throw new StudentNullException(ExceptionConstants.STUDENT_NULL.getMessage());
+		int year = -1;
+		if( student.getRegistry().length() < 11 || student.getRegistry().isEmpty() )
+			return year;	
+		try {
+			year = Integer.parseInt( student.getRegistry().substring(0, 4) );
+		}catch(NumberFormatException nfe){
+			nfe.getMessage();
+		}
+		return year;
+	}
+	public static int countElectives(String hours) {
+		int numberOfElectives = Integer.parseInt(hours);
+		if(numberOfElectives > 0)
+			numberOfElectives = numberOfElectives / StudentFieldsConstants.ELECTIVE_HOURS_DIVISOR.getValue();
+		return numberOfElectives;
 	}
 }

@@ -10,7 +10,12 @@ import javax.xml.bind.Unmarshaller;
 import br.com.pm_2017.si_grade.exceptions.EmptyCollectionException;
 import br.com.pm_2017.si_grade.exceptions.StudentException;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
-
+/**
+ * Reads from the configuration XML the available flags for the rules 
+ * that are instantiated only in execution time
+ * <p>
+ * @author Araragi-san
+ */
 public class ConfigurationImpl implements Configuration{
 	public String getRuleConfigutarion(int year) {
 		ListRuleConfiguration lrc = null;

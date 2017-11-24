@@ -1,5 +1,7 @@
 package br.com.pm_2017.si_grade.exceptions;
-
+/**
+ * Marks an empty collection 
+ */
 public class EmptyCollectionException extends RuntimeException{
 	
 	/**

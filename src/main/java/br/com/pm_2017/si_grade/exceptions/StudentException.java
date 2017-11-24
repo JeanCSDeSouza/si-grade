@@ -1,5 +1,8 @@
 package br.com.pm_2017.si_grade.exceptions;
-
+/**
+ * Marks any problem with student as runtime exception
+ *
+ */
 public class StudentException extends RuntimeException{
 
 	/**
