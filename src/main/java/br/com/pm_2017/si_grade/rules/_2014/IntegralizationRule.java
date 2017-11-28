@@ -13,7 +13,7 @@ public class IntegralizationRule implements Rule{
 	 * cheks if the student has attended to more than 6 periods
 	 */
 	public boolean execute(Student student) {
-		if( student.getPeriodsCr().size() >= CurricularGradeConstants.MIN_VALUE_FOR_INTEGRALIZATION_PLAN_FROM_2014.getValue() )
+		if( student.numberOfValidPeriods() >= CurricularGradeConstants.MIN_VALUE_FOR_INTEGRALIZATION_PLAN_FROM_2014.getValue() )
 			return true;
 		else 
 			return false;

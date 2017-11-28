@@ -2,7 +2,7 @@ package br.com.pm_2017.si_grade.rules;
 
 
 import br.com.pm_2017.si_grade.exceptions.EmptyCollectionException;
-import br.com.pm_2017.si_grade.exceptions.StudentNullException;
+import br.com.pm_2017.si_grade.exceptions.StudentException;
 import br.com.pm_2017.si_grade.model.Student;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
 import br.com.pm_2017.si_grade.utils.RuleMessageDescriptor;
@@ -22,7 +22,7 @@ public class RegisteredDisciplinesRule implements Rule{
 	 */
 	public boolean execute(Student student) {
 		if(student == null)
-			throw new StudentNullException(ExceptionConstants.STUDENT_NULL.getMessage());
+			throw new StudentException(ExceptionConstants.STUDENT_NULL.getMessage());
 
 		if(student.getDisciplines().isEmpty()) 
 			throw new EmptyCollectionException(ExceptionConstants.STUDENT_MAP_EMPTY.getMessage());
@@ -34,8 +34,6 @@ public class RegisteredDisciplinesRule implements Rule{
 	}
 	/**
 	 * Check if the student has more than 3 disciplines to attend
-	 * @param student
-	 * @return
 	 */
 	public boolean hasAtLeast3Remaining(Student student) {
 		return (student.remaining() >= StudentFieldsConstants.REMAINING_DISCIPLINES_INFERIOR_LIMIT.getValue() ) ? true : false;

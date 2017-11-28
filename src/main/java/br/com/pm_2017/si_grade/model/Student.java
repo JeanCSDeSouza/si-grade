@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.pm_2017.si_grade.utils.CurricularGradeConstants;
+import br.com.pm_2017.si_grade.utils.DisciplineCodHelper;
 import br.com.pm_2017.si_grade.utils.DisciplineStatus;
 /**
  * Represents the acting student in the application. Here is 
@@ -117,7 +118,11 @@ public class Student {
 	 * Returns the number of periods attended by the student 
 	 * @return int number of periods 
 	 */
-	public int numberOfPeriods() {
-		return this.periodsCr.size();
+	public int numberOfValidPeriods() {
+		if(this.disciplines.containsKey(DisciplineCodHelper.TRANCAMENTO_GERAL)) {
+			return ( this.periodsCr.size() - this.disciplines.get(DisciplineCodHelper.TRANCAMENTO_GERAL).getTimesAttended() );
+		}else
+			return this.periodsCr.size(); 
+		
 	}
 }

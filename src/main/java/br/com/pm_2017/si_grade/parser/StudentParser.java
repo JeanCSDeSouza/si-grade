@@ -3,7 +3,7 @@ package br.com.pm_2017.si_grade.parser;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.pm_2017.si_grade.exceptions.StudentNullException;
+import br.com.pm_2017.si_grade.exceptions.StudentException;
 import br.com.pm_2017.si_grade.model.Student;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
 import br.com.pm_2017.si_grade.utils.PdfCharacterRaplacer;
@@ -47,13 +47,6 @@ public class StudentParser {
 								student.setCra( Float.parseFloat( ( line.substring( PdfStudentConstants.STUDENT_CRA.getBegin(),
 										PdfStudentConstants.STUDENT_CRA.getEnd( ) ) )
 										.replace( PdfCharacterRaplacer.PDF_DECIMAL_MARKER.getValue( ), PdfCharacterRaplacer.PDF_DECIMAL_MARKER_REPLACER.getValue( ) ) ) );
-							/*else {
-								if(line.contains(PdfStudentConstants.STUDENT_COMPLEMENTARY_DISCIPLINES.getValue())) {
-									String conplementaryHours = line.substring( line.length() - PdfStudentConstants.STUDENT_COMPLEMENTARY_DISCIPLINES.getBegin() , line.length() );
-									int electives = countElectives(conplementaryHours);
-									student.setNumberOfElective(electives);
-								}
-							}*/
 						}
 					}
 				}	
@@ -75,7 +68,7 @@ public class StudentParser {
 	 */
 	public static int parseYearFromRegistry( Student student ) {
 		if( student == null || student.getRegistry() == null )
-			throw new StudentNullException(ExceptionConstants.STUDENT_NULL.getMessage());
+			throw new StudentException(ExceptionConstants.STUDENT_NULL.getMessage());
 		int year = -1;
 		if( student.getRegistry().length() < 11 || student.getRegistry().isEmpty() )
 			return year;	

@@ -13,6 +13,7 @@ public enum PdfStudentConstants {
 	STUDENT_REGISTRY( "Matrícula:", 11, 22 ),
 	//The last line hasn't the same length of the rest, then the numbers here are use to subtract from total 
 	STUDENT_PERIOD_CR("Coeficiente de Rendimento:", 7, 1),
+	//The numbers here are use to subtract from total 
 	STUDENT_COMPLEMENTARY_DISCIPLINES("11.2. Formação Complementar",3 , 0);
 	
 	String value;

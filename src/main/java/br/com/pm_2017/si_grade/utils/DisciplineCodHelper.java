@@ -3,7 +3,10 @@ package br.com.pm_2017.si_grade.utils;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ *  Contains the sets of disciplines used for categorize disciplines 
+ * @author Araragi-san
+ */
 public class DisciplineCodHelper {
 	public static final String[] MANDATORY_LIST = new String[] {"TIN0107","TIN0011","TIN0114","TIN0168",
 			"TIN0118","TIN0106","TIN0013","TIN0120","TIN0130","TIN0112","TIN0110","TIN0115","TIN0169",
@@ -36,5 +39,7 @@ public class DisciplineCodHelper {
 			"TIN0164",
 			"TIN0165"};	
 	public static final Set<String> OPTIONAL_DISCIPLINES = new HashSet<>(Arrays.asList(OPTIONAL_LIST));
+	
+	public static final String TRANCAMENTO_GERAL = "TRT0001";
 
 }

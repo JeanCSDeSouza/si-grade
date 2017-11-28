@@ -15,7 +15,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 
-import br.com.pm_2017.si_grade.exceptions.StudentNullException;
+import br.com.pm_2017.si_grade.exceptions.StudentException;
 import br.com.pm_2017.si_grade.model.Student;
 
 public class StudentParserTest {
@@ -64,7 +64,7 @@ public class StudentParserTest {
 	}
 	@Test
 	public void parseYearFromRegistryStudentNullTest( ) {
-		thrown.expect(StudentNullException.class);
+		thrown.expect(StudentException.class);
 		Student student = null;
 		sp.parseYearFromRegistry(student);
 	}
@@ -84,7 +84,7 @@ public class StudentParserTest {
 	}
 	@Test
 	public void parseYearFromRegistryStringNullTest( ) {
-		thrown.expect(StudentNullException.class);
+		thrown.expect(StudentException.class);
 		
 		Student student = new Student();
 		student.setRegistry(null);

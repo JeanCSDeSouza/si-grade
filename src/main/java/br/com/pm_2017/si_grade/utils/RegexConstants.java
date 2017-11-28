@@ -31,15 +31,24 @@ public class RegexConstants {
 	public static boolean isPdfDiscipline(String frase) {
 		return getPdfDisciplineMatcher(frase).find();
 	}
-	
+	/**
+	 * Returns a matcher of the given sting
+	 * @param frase
+	 * @return
+	 */
 	public static Matcher getPdfDisciplineMatcher(String frase) {
 		Matcher matcher = FIND_DISCIPLINES_ON_PDF.matcher(frase);
 		return matcher;
 	}
-
+	/**
+	 * Returns the string of the pattern 
+	 */
 	public static Pattern getFindDisciplinesOnPdfPattern() {
 		return FIND_DISCIPLINES_ON_PDF;
 	}
+	/**
+	 * returns a string of the pattern
+	 */
 	public static Pattern getFindMeaningfullPathsOnSvg() {
 		return FIND_MEANINGFUL_PATHS_ON_SVG;
 	}

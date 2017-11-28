@@ -25,7 +25,7 @@ public class GraduationTimeRule implements Rule{
 			throw new EmptyCollectionException( ExceptionConstants.STUDENT_CR_LIST_EMPTY.getMessage() );
 		return isGraduationTimeRespected(student);
 	}
-	//The workin implementation of the execute method in this rule
+	//The working implementation of the execute method in this rule
 	public boolean isGraduationTimeRespected(Student student) {
 		int periodsAttended = student.getPeriodsCr().size();
 		int periodsRemaining = (8 - periodsAttended);

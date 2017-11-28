@@ -17,13 +17,12 @@ public class Si_Grade_App {
 	public static void main(String[] args) throws IOException, URISyntaxException {
 		StudentController studentController = new StudentController();
 		
-		List<String> document = studentController.generateDocumentLinesList("historico2.pdf");//modificar para generateDocumentLinesList
-		
+		List<String> document = studentController.generateDocumentLinesList("historico.pdf");
 		Student student = studentController.getStudentFromPdf(document);
+		
 		Map<String, Boolean> rulesCache = studentController.generateRuleMap(student);
 
-		List<String> lines = studentController.generateSvgStringList("svg.svg");//generateSvgLinesList
-		
+		List<String> lines = studentController.generateSvgStringList("svg.svg");
 		
 		String linesAsString = studentController.generateColoredSvg(student, lines);
 		

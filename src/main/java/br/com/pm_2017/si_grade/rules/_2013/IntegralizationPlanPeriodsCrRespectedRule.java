@@ -14,7 +14,7 @@ public class IntegralizationPlanPeriodsCrRespectedRule implements Rule{
 	 * cr are greater than 5.0 
 	 */
 	public boolean execute(Student student) {
-		if(student.getPeriodsCr().size() >= CurricularGradeConstants.MIN_VALUE_FOR_INTEGRALIZATION_PLAN_UNTIL_2013_2.getValue()) {
+		if(student.numberOfValidPeriods() >= CurricularGradeConstants.MIN_VALUE_FOR_INTEGRALIZATION_PLAN_UNTIL_2013_2.getValue()) {
 			for(int i = ( 13 - 1 ); i < student.getPeriodsCr().size(); i++)	
 				if(student.getPeriodsCr().get(i) < RuleFloatConstants.INTEGRALIZATION_PLAN_PERIODS_CR_INFERIOR_LIMIT.getValue())
 					return false;

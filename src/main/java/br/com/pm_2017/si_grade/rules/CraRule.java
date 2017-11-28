@@ -1,6 +1,6 @@
 package br.com.pm_2017.si_grade.rules;
 
-import br.com.pm_2017.si_grade.exceptions.StudentNullException;
+import br.com.pm_2017.si_grade.exceptions.StudentException;
 import br.com.pm_2017.si_grade.model.Student;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
 import br.com.pm_2017.si_grade.utils.RuleFloatConstants;
@@ -19,7 +19,7 @@ public class CraRule implements Rule{
 	 */
 	public boolean execute(Student student) {
 		if(student == null)
-			throw new StudentNullException(ExceptionConstants.STUDENT_NULL.getMessage());
+			throw new StudentException(ExceptionConstants.STUDENT_NULL.getMessage());
 		if( craGreaterThan(student) )
 			return true;
 		else 

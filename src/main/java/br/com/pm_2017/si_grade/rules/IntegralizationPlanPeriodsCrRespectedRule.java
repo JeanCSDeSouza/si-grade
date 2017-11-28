@@ -3,6 +3,7 @@ package br.com.pm_2017.si_grade.rules;
 import br.com.pm_2017.si_grade.exceptions.EmptyCollectionException;
 import br.com.pm_2017.si_grade.exceptions.StudentException;
 import br.com.pm_2017.si_grade.model.Student;
+import br.com.pm_2017.si_grade.utils.DisciplineCodHelper;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
 import br.com.pm_2017.si_grade.utils.RuleMessageDescriptor;
 import br.com.pm_2017.si_grade.utils.RulePackagePrefix;
@@ -31,6 +32,10 @@ public class IntegralizationPlanPeriodsCrRespectedRule implements Rule{
 			throw new EmptyCollectionException( ExceptionConstants.STUDENT_CR_LIST_EMPTY.getMessage() );
 		if( ( student.getYearOfRegistry() < StudentFieldsConstants.MIN_YEAR_OF_REGISTRY.getValue() ) )
 			throw new StudentException(ExceptionConstants.STUDENT_REGISTRY_YEAR_LESS_THAN_LIMIT.getMessage());
+		if(student.getDisciplines().containsKey(DisciplineCodHelper.TRANCAMENTO_GERAL)){
+			for(int i = 0; i < student.getDisciplines().get(DisciplineCodHelper.TRANCAMENTO_GERAL).getTimesAttended(); i++)
+				student.getPeriodsCr().remove((float) 0.0);
+		}
 		return reflected.getReflectedRule(student, RulePackagePrefix.INTEGRALIZATION_PLAN_PERIODS_CR_RESPECTED_RULE.getValue()).execute(student);
 	}
 	public String getMessage() {
