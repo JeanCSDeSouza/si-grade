@@ -8,53 +8,58 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-
-public class SiGradeIO{
+public class SiGradeIO {
 	List<String> document;
 	File path;
-	
+
 	public SiGradeIO(String filePath) {
 		Path file = fileOpen(filePath);
-		if( file.toFile().canRead() ){
+		if (file.toFile().canRead()) {
 			Charset charset = Charset.forName("UTF-8");
 			document = loadDocument(file, charset);
-		}else {
+		} else {
 			throw new IllegalArgumentException("Could not read svg: InvalidPath");
-		}	
+		}
 	}
-	
+
 	/**
-	 * Instantiate a java.io.File and returns it. 
-	 * @param fileName the path to instantiate the java.io.file
-	 * @return java.io.File 
+	 * Instantiate a java.io.File and returns it.
+	 * 
+	 * @param fileName
+	 *            the path to instantiate the java.io.file
+	 * @return java.io.File
 	 */
-	private Path fileOpen(String fileName){
-		 return Paths.get(fileName);
+	private Path fileOpen(String fileName) {
+		return Paths.get(fileName);
 	}
-	
+
 	/**
-	 * Responsible for opening the document and returning its lines 
-	 * Ensures that the document is close at the end
-	 * @param file the path of the document 
-	 * @param charset the charset used in the document
+	 * Responsible for opening the document and returning its lines Ensures that the
+	 * document is close at the end
+	 * 
+	 * @param file
+	 *            the path of the document
+	 * @param charset
+	 *            the charset used in the document
 	 * @return
 	 */
-	private List<String> loadDocument(Path file, Charset charset){
+	private List<String> loadDocument(Path file, Charset charset) {
 		List<String> text = null;
 		try {
 			text = Files.readAllLines(file, charset);
-		}catch(IOException ioe) {
+		} catch (IOException ioe) {
 			ioe.getMessage();
 		}
 		return text;
 	}
-	
+
 	/**
 	 * returns the lines list of an document
+	 * 
 	 * @return List<String>
 	 */
 	public List<String> getDocument() {
 		return document;
 	}
-	
+
 }

@@ -5,7 +5,6 @@ package br.com.pm_2017.si_grade.utils;
  * Approved(1), Reproved(0), Registered(-1), locked(-2). 
  * Dispensation also counts as approved.
  * <p>
- * @author Araragi-san  
  */
 public enum DisciplineStatus {
 	DISPENSA_SEM_NOTA("DIS - Dispensa sem nota", 1),

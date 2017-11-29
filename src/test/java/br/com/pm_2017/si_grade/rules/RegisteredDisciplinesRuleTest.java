@@ -18,36 +18,36 @@ public class RegisteredDisciplinesRuleTest {
 	private RegisteredDisciplinesRule rd;
 	private Student student;
 	private Map<String, Discipline> disciplines;
-	
+
 	@Before
 	public void setUp() {
 		rd = new RegisteredDisciplinesRule();
 		student = new Student();
 		disciplines = new HashMap<String, Discipline>();
 	}
-	
+
 	/**
 	 * Test for 2 attending disciplines
 	 */
 	@Test
-	public void lessThanNeededDisciplinesMustReturnFalse() {	
+	public void lessThanNeededDisciplinesMustReturnFalse() {
 		Discipline d1 = new Discipline();
 		Discipline d2 = new Discipline();
 		d1.setSituation(DisciplineStatus.MATRICULA.getStatus());
 		d2.setSituation(DisciplineStatus.MATRICULA.getStatus());
-		
+
 		disciplines.put("d1", d1);
 		disciplines.put("d2", d2);
 		student.setDisciplines(disciplines);
-		
+
 		assertFalse(rd.execute(student));
 	}
-	
+
 	/**
 	 * Test for 4 attending disciplines
 	 */
 	@Test
-	public void moreThanNeededDisciplinesMustReturnTrue() {	
+	public void moreThanNeededDisciplinesMustReturnTrue() {
 		Discipline d1 = new Discipline();
 		Discipline d2 = new Discipline();
 		Discipline d3 = new Discipline();
@@ -56,16 +56,16 @@ public class RegisteredDisciplinesRuleTest {
 		d2.setSituation(DisciplineStatus.MATRICULA.getStatus());
 		d3.setSituation(DisciplineStatus.MATRICULA.getStatus());
 		d4.setSituation(DisciplineStatus.MATRICULA.getStatus());
-				
+
 		disciplines.put("d1", d1);
 		disciplines.put("d2", d2);
 		disciplines.put("d3", d3);
 		disciplines.put("d4", d4);
 		student.setDisciplines(disciplines);
-		
+
 		assertTrue(rd.execute(student));
 	}
-	
+
 	/**
 	 * Test for 3 attending disciplines
 	 */
@@ -77,12 +77,12 @@ public class RegisteredDisciplinesRuleTest {
 		d1.setSituation(DisciplineStatus.MATRICULA.getStatus());
 		d2.setSituation(DisciplineStatus.MATRICULA.getStatus());
 		d3.setSituation(DisciplineStatus.MATRICULA.getStatus());
-				
+
 		disciplines.put("d1", d1);
 		disciplines.put("d2", d2);
 		disciplines.put("d3", d3);
 		student.setDisciplines(disciplines);
-		
+
 		assertTrue(rd.execute(student));
 	}
 }

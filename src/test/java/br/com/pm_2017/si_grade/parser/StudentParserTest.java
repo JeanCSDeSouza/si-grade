@@ -26,7 +26,6 @@ public class StudentParserTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		//sp = new StudentParser();
 		List<String> toMock = new ArrayList<String>();
 		toMock.add("Matrícula: 20161210015 Período Atual: 4º Semestre");
 		toMock.add("Nome Aluno: JEAN CARLOS SILVA DE SOUZA");
@@ -43,7 +42,7 @@ public class StudentParserTest {
 		@SuppressWarnings("unchecked")
 		List<String> mocked = mock(List.class);
 		when(mocked.isEmpty()).thenReturn(true); 
-		Student test = sp.generateStudent(mocked);
+		Student test = StudentParser.generateStudent(mocked);
 		assertNull( "Should be null", test);
 	}
 	
@@ -53,7 +52,7 @@ public class StudentParserTest {
 		when(mocked.toString()).thenReturn
 		("Student [name=JEAN CARLOS SILVA DE SOUZA, cra=7.66, resgistry=20161210015, periodsCr=[7.66, 7.66, 7.66, 0.0]]");
 
-		Student test = sp.generateStudent(toMock);
+		Student test = StudentParser.generateStudent(toMock);
 		assertNotNull( "Should not be null", test);
 		
 		//assertEquals("failure - strings are not equal", mocked.toString(), test.toString());
@@ -66,20 +65,20 @@ public class StudentParserTest {
 	public void parseYearFromRegistryStudentNullTest( ) {
 		thrown.expect(StudentException.class);
 		Student student = null;
-		sp.parseYearFromRegistry(student);
+		StudentParser.parseYearFromRegistry(student);
 	}
 	@Test
 	public void parseYearFromRegistryLengthTest( ) {
 		Student student = mock(Student.class);
 		Mockito.when(student.getRegistry()).thenReturn("1235111111");
-		int answer = sp.parseYearFromRegistry(student);
+		int answer = StudentParser.parseYearFromRegistry(student);
 		assertEquals("Should be equal", -1, answer);
 	}
 	@Test
 	public void parseYearFromRegistryemptyTest( ) {
 		Student student = mock(Student.class);
 		Mockito.when(student.getRegistry()).thenReturn("");
-		int answer = sp.parseYearFromRegistry(student);
+		int answer = StudentParser.parseYearFromRegistry(student);
 		assertEquals("Should be equal", -1, answer);
 	}
 	@Test
@@ -88,14 +87,14 @@ public class StudentParserTest {
 		
 		Student student = new Student();
 		student.setRegistry(null);
-		sp.parseYearFromRegistry(student);
+		StudentParser.parseYearFromRegistry(student);
 	}
 	@Test
 	public void parseYearFromRegistryEqualsTest( ) {
 		Student student = mock(Student.class);
 		String registry = "20111210020";
 		Mockito.when( student.getRegistry() ).thenReturn(registry);
-		int answer = sp.parseYearFromRegistry(student);
+		int answer = StudentParser.parseYearFromRegistry(student);
 		assertEquals("Should be equal", 2011, answer);
 	}
 }

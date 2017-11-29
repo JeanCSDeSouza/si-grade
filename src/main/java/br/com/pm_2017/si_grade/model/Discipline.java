@@ -1,11 +1,9 @@
 package br.com.pm_2017.si_grade.model;
 
 /**
- * Represents the disciplines of the S.I course, used
- * to count how many times the student has done the disciplines and 
- * comparison reasons 
+ * Represents the disciplines of the S.I course, used to count how many times
+ * the student has done the disciplines and comparison reasons
  * <p>
- * @author Araragi-san 
  */
 public class Discipline {
 	private String code;
@@ -13,9 +11,10 @@ public class Discipline {
 	private int type;
 	private int timesAttended;
 	private int timesFailure;
-	
+
 	public Discipline() {
 	}
+
 	public Discipline(String code) {
 		this.code = code;
 	}
@@ -35,17 +34,19 @@ public class Discipline {
 	public int getType() {
 		return type;
 	}
-	
+
 	public void setType(int type) {
 		this.type = type;
 	}
+
 	public int getTimesAttended() {
 		return timesAttended;
 	}
-	
+
 	public void setTimesAttended(int timesAttended) {
 		this.timesAttended = timesAttended;
 	}
+
 	/**
 	 * increases the number of times a disciplines was coursed in 1
 	 */
@@ -58,7 +59,7 @@ public class Discipline {
 		return "Discipline [code=" + code + ", situation=" + situation + ", type=" + type + ", timesAttended="
 				+ timesAttended + ", timesFailure=" + timesFailure + "]";
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -66,6 +67,7 @@ public class Discipline {
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		return result;
 	}
+
 	/**
 	 * compares disciplines by code
 	 */
@@ -85,13 +87,15 @@ public class Discipline {
 			return false;
 		return true;
 	}
+
 	public int getTimesFailure() {
 		return timesFailure;
 	}
-	
+
 	public void setTimesFailure(int timesFailure) {
 		this.timesFailure = timesFailure;
 	}
+
 	public void fail() {
 		this.timesFailure++;
 	}

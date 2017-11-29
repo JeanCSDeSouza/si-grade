@@ -6,15 +6,15 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlAccessType;
+
 /**
  * Represents the root element of the configuration xml.
  * <p>
- * @author Araragi-san
  */
-@XmlRootElement(name="years")
+@XmlRootElement(name = "years")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ListRuleConfiguration {
-    @XmlElement(name="rule")
+	@XmlElement(name = "rule")
 	List<RuleConfiguration> rulesConfiguration;
 
 	public List<RuleConfiguration> getRulesConfiguration() {
@@ -29,5 +29,5 @@ public class ListRuleConfiguration {
 	public String toString() {
 		return "ListRuleConfiguration [rulesConfiguration=" + rulesConfiguration + "]";
 	}
-	
+
 }

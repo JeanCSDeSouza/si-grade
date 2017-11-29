@@ -11,17 +11,18 @@ import br.com.pm_2017.si_grade.model.Student;
 
 public class CraRuleTest {
 	private CraRule cra;
-	
+
 	@Before
 	public void startUp() {
 		cra = new CraRule();
 	}
+
 	@Test
 	public void craGreaterThanTrueTest() {
 		Student student = mock(Student.class);
-		when(student.getCra()).thenReturn( (float) 7.0000);
+		when(student.getCra()).thenReturn((float) 7.0000);
 		assertEquals("Failure - Should be true", true, cra.execute(student));
-		when(student.getCra()).thenReturn( (float) 6.9999);
+		when(student.getCra()).thenReturn((float) 6.9999);
 		assertEquals("Failure - Should be true", false, cra.execute(student));
 	}
 }

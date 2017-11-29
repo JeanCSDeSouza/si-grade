@@ -10,13 +10,13 @@ import javax.xml.bind.Unmarshaller;
 import br.com.pm_2017.si_grade.exceptions.EmptyCollectionException;
 import br.com.pm_2017.si_grade.exceptions.StudentException;
 import br.com.pm_2017.si_grade.utils.ExceptionConstants;
+
 /**
- * Reads from the configuration XML the available flags for the rules 
- * that are instantiated only in execution time
+ * Reads from the configuration XML the available flags for the rules that are
+ * instantiated only in execution time
  * <p>
- * @author Araragi-san
  */
-public class ConfigurationImpl implements Configuration{
+public class ConfigurationImpl implements Configuration {
 	public String getRuleConfigutarion(int year) {
 		ListRuleConfiguration lrc = null;
 		try {
@@ -26,11 +26,11 @@ public class ConfigurationImpl implements Configuration{
 		} catch (JAXBException jaxbe) {
 			jaxbe.getMessage();
 		}
-		if(lrc == null || lrc.getRulesConfiguration().isEmpty() || lrc.getRulesConfiguration().isEmpty())
+		if (lrc == null || lrc.getRulesConfiguration().isEmpty() || lrc.getRulesConfiguration().isEmpty())
 			throw new EmptyCollectionException(ExceptionConstants.RULES_CONFIGURATION_LIST.getMessage());
 		Optional<RuleConfiguration> rl = lrc.getRulesConfiguration().stream()
-		.filter( value -> ( ( value.getStart() <= year ) && ( year <=value.getEnd() ))).findFirst();
-		if(rl.isPresent())
+				.filter(value -> ((value.getStart() <= year) && (year <= value.getEnd()))).findFirst();
+		if (rl.isPresent())
 			return rl.get().getFlag();
 		else
 			throw new StudentException(ExceptionConstants.STUDENT_REGISTRY_YEAR_LESS_NOT_RECONIZED.getMessage());

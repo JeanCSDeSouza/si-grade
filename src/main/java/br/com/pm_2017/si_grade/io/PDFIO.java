@@ -12,35 +12,41 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import br.com.pm_2017.si_grade.exceptions.PDFIsEncryptedException;
 
-public class PDFIO{
+public class PDFIO {
 
 	PDDocument document;
 
 	/**
-	 * Create an instance of PDFIO by the given string that represents the path 
+	 * Create an instance of PDFIO by the given string that represents the path
 	 * where the PDF file is.
-	 * @param filePath String that represents the path of the PDF file
-	 * @exception IllegalArgumentException if the path is invalid
-	 * @throws  PDFIsEncryptedException if the PDF is encrypted
+	 * 
+	 * @param filePath
+	 *            String that represents the path of the PDF file
+	 * @exception IllegalArgumentException
+	 *                if the path is invalid
+	 * @throws PDFIsEncryptedException
+	 *             if the PDF is encrypted
 	 */
-	public PDFIO(String filePath){
+	public PDFIO(String filePath) {
 		File file = new File(filePath);
-		if( file.canRead() )
+		if (file.canRead())
 			document = loadDocument(file);
-		else 
+		else
 			throw new IllegalArgumentException("Could not read pdf: InvalidPath");
 	}
-	
+
 	/**
 	 * Opens a PDFBox document using the java.io.File passed as parameter
-	 * @param file, a java.io.File needed by PDFBox PDDocument
-	 * @return a PDDocument that encapsulates the PDF document 
+	 * 
+	 * @param file,
+	 *            a java.io.File needed by PDFBox PDDocument
+	 * @return a PDDocument that encapsulates the PDF document
 	 */
-	private PDDocument loadDocument(File file){
+	private PDDocument loadDocument(File file) {
 		PDDocument document = null;
-		try{
-			document = PDDocument.load( file );
-			if(document.isEncrypted()) {
+		try {
+			document = PDDocument.load(file);
+			if (document.isEncrypted()) {
 				this.document = null;
 				throw new PDFIsEncryptedException("Could not read pdf: Is encrypted");
 			}
@@ -51,49 +57,55 @@ public class PDFIO{
 		}
 		return document;
 	}
+
 	/**
 	 * Closes the document opened in the constructor
+	 * 
 	 * @throws IOException
 	 */
 	public void closeDocument() throws IOException {
 		try {
 			document.close();
-		}catch( IOException ioe) {
+		} catch (IOException ioe) {
 			ioe.getStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Gets the text of a PDDocument 
+	 * Gets the text of a PDDocument
+	 * 
 	 * @return String containing the text of the given PDFDocument
 	 */
-	public String getText(){
-		if( document.equals( null ) ) 
+	public String getText() {
+		if (document.equals(null))
 			return null;
 		else {
 			PDFTextStripper stripper = null;
 			String pdfText = null;
 			try {
 				stripper = new PDFTextStripper();
-				stripper.setSortByPosition( true );
-				stripper.setStartPage( 0 );
-				stripper.setEndPage( document.getNumberOfPages() );
-				pdfText = stripper.getText( document );
+				stripper.setSortByPosition(true);
+				stripper.setStartPage(0);
+				stripper.setEndPage(document.getNumberOfPages());
+				pdfText = stripper.getText(document);
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			return pdfText;
-		}	
+		}
 	}
+
 	/**
 	 * Gets the instance value of PDDocument
 	 */
 	public PDDocument getDocument() {
 		return document;
 	}
+
 	/**
-	 * Split the getText() String by line 
+	 * Split the getText() String by line
+	 * 
 	 * @return the List containing the lines of a PDF document
 	 */
 	public List<String> getLinesList() {

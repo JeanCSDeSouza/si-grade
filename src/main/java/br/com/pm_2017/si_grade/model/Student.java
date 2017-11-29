@@ -6,9 +6,10 @@ import java.util.Map;
 import br.com.pm_2017.si_grade.utils.CurricularGradeConstants;
 import br.com.pm_2017.si_grade.utils.DisciplineCodHelper;
 import br.com.pm_2017.si_grade.utils.DisciplineStatus;
+
 /**
- * Represents the acting student in the application. Here is 
- * all the information need of an student by the application
+ * Represents the acting student in the application. Here is all the information
+ * need of an student by the application
  */
 public class Student {
 	private String name;
@@ -18,10 +19,10 @@ public class Student {
 	private List<Float> periodsCr;
 	private int yearOfRegistry;
 	Map<String, Discipline> disciplines;
-	
+
 	public Student() {
 	}
-	
+
 	public Student(String name, float cra) {
 		this.name = name;
 		this.cra = cra;
@@ -42,7 +43,7 @@ public class Student {
 	public void setCra(float cra) {
 		this.cra = cra;
 	}
-	
+
 	public String getRegistry() {
 		return registry;
 	}
@@ -50,7 +51,7 @@ public class Student {
 	public void setRegistry(String registry) {
 		this.registry = registry;
 	}
-	
+
 	public int getNumberOfElective() {
 		return numberOfElective;
 	}
@@ -66,7 +67,7 @@ public class Student {
 	public void setPeriodsCr(List<Float> periodsCr) {
 		this.periodsCr = periodsCr;
 	}
-	
+
 	public int getYearOfRegistry() {
 		return yearOfRegistry;
 	}
@@ -89,40 +90,47 @@ public class Student {
 				+ numberOfElective + ", periodsCr=" + periodsCr + ", yearOfRegistry=" + yearOfRegistry
 				+ ", disciplines=" + disciplines + "]";
 	}
+
 	/**
 	 * Count the remaining disciplines for a student to graduate
+	 * 
 	 * @return int number of remaining disciplines
 	 */
 	public int remaining() {
 		int numberDisciplines = this.disciplines.size() - attending();
 		int totalDisciplines = CurricularGradeConstants.TOTAL_NUMBER_DISCIPLINES.getValue();
-		
+
 		int remainingDisciplines = totalDisciplines - numberDisciplines;
-		
+
 		return remainingDisciplines;
 	}
+
 	/**
 	 * Counts the number of disciplines an student are attending ate the moment
+	 * 
 	 * @return
 	 */
 	public int attending() {
 		int count = 0;
-		
-		for(Discipline discipline : this.disciplines.values()) 
-			if(discipline.getSituation() == DisciplineStatus.MATRICULA.getStatus())
+
+		for (Discipline discipline : this.disciplines.values())
+			if (discipline.getSituation() == DisciplineStatus.MATRICULA.getStatus())
 				count++;
-		
+
 		return count;
 	}
+
 	/**
-	 * Returns the number of periods attended by the student 
-	 * @return int number of periods 
+	 * Returns the number of periods attended by the student
+	 * 
+	 * @return int number of periods
 	 */
 	public int numberOfValidPeriods() {
-		if(this.disciplines.containsKey(DisciplineCodHelper.TRANCAMENTO_GERAL)) {
-			return ( this.periodsCr.size() - this.disciplines.get(DisciplineCodHelper.TRANCAMENTO_GERAL).getTimesAttended() );
-		}else
-			return this.periodsCr.size(); 
-		
+		if (this.disciplines.containsKey(DisciplineCodHelper.TRANCAMENTO_GERAL)) {
+			return (this.periodsCr.size()
+					- this.disciplines.get(DisciplineCodHelper.TRANCAMENTO_GERAL).getTimesAttended());
+		} else
+			return this.periodsCr.size();
+
 	}
 }

@@ -104,7 +104,7 @@ public class JubilateRuleTest {
 
 		assertFalse(jb.isJubilate(student));
 	}
-	
+
 	/**
 	 * Test for CRA=4 and Fails=5
 	 */
@@ -136,7 +136,7 @@ public class JubilateRuleTest {
 
 		assertFalse(jb.isJubilate(student));
 	}
-	
+
 	/**
 	 * Test for CRA=4.1 and Fails=4
 	 */
@@ -152,7 +152,7 @@ public class JubilateRuleTest {
 
 		assertFalse(jb.isJubilate(student));
 	}
-	
+
 	/**
 	 * Test for CRA=4.1 and Fails=5
 	 */

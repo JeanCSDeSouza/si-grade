@@ -18,24 +18,27 @@ import br.com.pm_2017.si_grade.model.Student;
 public class IntegralizationRuleTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
-	IntegralizationRule ir; 
+	IntegralizationRule ir;
+
 	@Before
 	public void setUp() {
-		ir = new IntegralizationRule(); 
+		ir = new IntegralizationRule();
 	}
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void IntegralizationRuleTrueTest() {
 		List<Float> periodsCr = mock(ArrayList.class);
-	
+
 		when(periodsCr.size()).thenReturn(7);
 		Student student = mock(Student.class);
 		when(student.getYearOfRegistry()).thenReturn(2014);
 		when(student.getPeriodsCr()).thenReturn(periodsCr);
-		assertEquals("Failure - should be true", true, ir.execute(student) );
+		assertEquals("Failure - should be true", true, ir.execute(student));
 		when(periodsCr.size()).thenReturn(8);
-		assertEquals("Failure - should be true", true, ir.execute(student) );
+		assertEquals("Failure - should be true", true, ir.execute(student));
 	}
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void IntegralizationRuleFalseTest() {
@@ -44,12 +47,13 @@ public class IntegralizationRuleTest {
 		Student student = mock(Student.class);
 		when(student.getYearOfRegistry()).thenReturn(2014);
 		when(student.getPeriodsCr()).thenReturn(periodsCr);
-		assertEquals("Failure - should be true", false, ir.execute(student) );
+		assertEquals("Failure - should be true", false, ir.execute(student));
 		when(periodsCr.size()).thenReturn(5);
-		assertEquals("Failure - should be true", false, ir.execute(student) );
+		assertEquals("Failure - should be true", false, ir.execute(student));
 		when(periodsCr.size()).thenReturn(0);
-		assertEquals("Failure - should be true", false, ir.execute(student) );
+		assertEquals("Failure - should be true", false, ir.execute(student));
 	}
+
 	@Test
 	public void IntegralizationRuleExceptionWithNullTest() {
 		thrown.expect(StudentException.class);
@@ -57,6 +61,7 @@ public class IntegralizationRuleTest {
 		when(student.getPeriodsCr()).thenReturn(null);
 		ir.execute(student);
 	}
+
 	@Test
 	public void IntegralizationRuleExceptionWithEmptyTest() {
 		thrown.expect(StudentException.class);

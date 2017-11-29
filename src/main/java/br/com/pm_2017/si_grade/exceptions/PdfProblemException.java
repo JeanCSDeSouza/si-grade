@@ -1,8 +1,9 @@
 package br.com.pm_2017.si_grade.exceptions;
+
 /**
- *Marks any problem with the pdf as an runtime exception
+ * Marks any problem with the pdf as an runtime exception
  */
-public class PdfProblemException extends RuntimeException{
+public class PdfProblemException extends RuntimeException {
 
 	/**
 	 * 
@@ -12,6 +13,7 @@ public class PdfProblemException extends RuntimeException{
 	public PdfProblemException(String msg) {
 		super(msg);
 	}
+
 	public PdfProblemException(String msg, Throwable cause) {
 		super(msg, cause);
 	}

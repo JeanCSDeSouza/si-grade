@@ -6,7 +6,6 @@ import br.com.pm_2017.si_grade.utils.StudentFieldsConstants;
 /**
  * Implements the strategy to validate a student
  * <p>
- * @author Araragi-san
  */
 public class StudentValidator{
 	/**

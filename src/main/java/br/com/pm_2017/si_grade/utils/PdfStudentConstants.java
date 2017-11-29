@@ -3,7 +3,6 @@ package br.com.pm_2017.si_grade.utils;
 /**
  * Describes the constants for instantiating a student from the PDF 
  * text used by the parse class
- * @author Araragi-san
  */
 public enum PdfStudentConstants {
 	STUDENT_NAME("Nome Aluno:", 12, -1),
