@@ -31,7 +31,7 @@ public class StudentValidatorTest {
 	@Test
 	public void disciplineValidatorStudentNullTest() {
 		Student student = null;
-		assertEquals("Failure - Should be true", true, dv.checkStudentNullError(student));
+		assertEquals("Failure - Should be true", true, StudentValidator.checkStudentNullError(student));
 	}
 
 	@Test
@@ -41,7 +41,7 @@ public class StudentValidatorTest {
 
 		disciplines = new HashMap<String, Discipline>();
 		student.setDisciplines(disciplines);
-		assertEquals("Failure - Should be true", true, dv.checkStudentMapError(student));
+		assertEquals("Failure - Should be true", true, StudentValidator.checkStudentMapError(student));
 	}
 
 	@Test
@@ -49,7 +49,7 @@ public class StudentValidatorTest {
 		Map<String, Discipline> disciplines = null;
 		Student student = new Student();
 		student.setDisciplines(disciplines);
-		assertEquals("Failure - Should be true", true, dv.checkStudentMapError(student));
+		assertEquals("Failure - Should be true", true, StudentValidator.checkStudentMapError(student));
 	}
 
 	@Test
@@ -59,28 +59,28 @@ public class StudentValidatorTest {
 		disciplines.put("TIN4545", discipline);
 		Student student = new Student();
 		student.setDisciplines(disciplines);
-		assertEquals("Failure - Should be false", false, dv.checkStudentMapError(student));
+		assertEquals("Failure - Should be false", false, StudentValidator.checkStudentMapError(student));
 	}
 
 	@Test
 	public void disciplineValidatorStudentNameTrueTest() {
 		Student student = mock(Student.class);
 		when(student.getName()).thenReturn("");
-		assertEquals("Failure - Should be true", true, dv.checkStudentNameError(student));
+		assertEquals("Failure - Should be true", true, StudentValidator.checkStudentNameError(student));
 		student = new Student();
 		student.setName(null);
-		assertEquals("Failure - Should be true", true, dv.checkStudentNameError(student));
+		assertEquals("Failure - Should be true", true, StudentValidator.checkStudentNameError(student));
 	}
 
 	@Test
 	public void disciplineValidatorStudentRegistryTrueTest() {
 		Student student = new Student();
 		student.setRegistry(null);
-		assertEquals("Failure - Should be true", true, dv.checkStudentResitryError(student));
+		assertEquals("Failure - Should be true", true, StudentValidator.checkStudentResitryError(student));
 		student.setRegistry("0000000000");
-		assertEquals("Failure - Should be true", true, dv.checkStudentResitryError(student));
+		assertEquals("Failure - Should be true", true, StudentValidator.checkStudentResitryError(student));
 		student.setRegistry("");
-		assertEquals("Failure - Should be true", true, dv.checkStudentResitryError(student));
+		assertEquals("Failure - Should be true", true, StudentValidator.checkStudentResitryError(student));
 	}
 
 	@Test
@@ -88,9 +88,9 @@ public class StudentValidatorTest {
 		List<Float> periodsCr = null;
 		Student student = new Student();
 		student.setPeriodsCr(periodsCr);
-		assertEquals("Failure - Should be true", true, dv.checkStudentPeriodsCrError(student));
+		assertEquals("Failure - Should be true", true, StudentValidator.checkStudentPeriodsCrError(student));
 		periodsCr = new ArrayList<Float>();
 		student.setPeriodsCr(periodsCr);
-		assertEquals("Failure - Should be true", true, dv.checkStudentPeriodsCrError(student));
+		assertEquals("Failure - Should be true", true, StudentValidator.checkStudentPeriodsCrError(student));
 	}
 }

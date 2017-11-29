@@ -15,14 +15,14 @@ import org.junit.rules.ExpectedException;
 import br.com.pm_2017.si_grade.exceptions.StudentException;
 import br.com.pm_2017.si_grade.model.Student;
 
-public class IntegralizationRuleTest {
+public class IntegralizationPlanNeededRuleTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
-	IntegralizationRule ir;
+	IntegralizationPlanNeededRule ir;
 
 	@Before
 	public void setUp() {
-		ir = new IntegralizationRule();
+		ir = new IntegralizationPlanNeededRule();
 	}
 
 	@SuppressWarnings("unchecked")

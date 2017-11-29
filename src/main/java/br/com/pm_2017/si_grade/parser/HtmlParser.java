@@ -15,7 +15,7 @@ public class HtmlParser {
 			String htmlLine = html.get(i);
 			if (htmlLine.contains(HtmlConstants.SVG_MARKER.getValue()))
 				html.set(i, svgLinesAsString);
-			if (!new StudentValidator().execute(student)) {
+			//if (new StudentValidator().execute(student)) {
 				if (htmlLine.contains(HtmlConstants.STUDENT_NAME_PROPERTY.getValue()))
 					html.set(i, (htmlLine.replace(HtmlConstants.STUDENT_NAME_PROPERTY.getValue(), student.getName())));
 				else if (htmlLine.contains(HtmlConstants.STUDENT_REGISTRY_PROSPERTY.getValue()))
@@ -80,7 +80,7 @@ public class HtmlParser {
 						html.set(i, (htmlLine.replace(HtmlConstants.JUBILATE_RULE_PROPERTY.getValue(),
 								HtmlConstants.RULE_FLAG_FALSE.getValue())));
 				}
-			}
+			//}
 		}
 		return html;
 	}

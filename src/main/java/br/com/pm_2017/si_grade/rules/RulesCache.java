@@ -14,28 +14,33 @@ import br.com.pm_2017.si_grade.model.Student;
  * student
  */
 public class RulesCache {
-	List<Rule> rules = Arrays.asList(new GraduationTimeRule(), new IntegralizationRule(),
-			new IntegralizationPlanPeriodsCrRespectedRule(), new JubilateRule(), new RegisteredDisciplinesRule(),
-			new CraRule());
+	List<Rule> rules = Arrays.asList(
+			new GraduationTimeRule(), // rule.get(0)
+			new IntegralizationPlanNeededRule(), // rule.get(1)
+			new IntegralizationPlanPeriodsCrRespectedRule(),// rule.get(2) 
+			new JubilateRule(),// rule.get(3) 
+			new RegisteredDisciplinesRule(),// rule.get(4)
+			new CraRule());// rule.get(5)
 
 	/**
 	 * The rules makes a previous test on GraduationTime since that rule makes not
 	 * necessary the application of IntegralizationRule and
-	 * IntegralizationPlanPeriodsCrRespectedRule
+	 * IntegralizationPlanPeriodsCrRespectedRule.
 	 * 
 	 * @param student
-	 * @return Map<getMessage(),Boolean>
+	 * @return Map(getMessage(),Boolean) where message is the given property used on the HTML 
 	 */
 	public Map<String, Boolean> execute(Student student) {
 		Map<String, Boolean> answer = new HashMap<String, Boolean>();
-		if (rules.get(0).execute(student)) {
-			answer.put(rules.get(0).getMessage(), true);
-			answer.put(rules.get(1).getMessage(), false);
-			answer.put(rules.get(2).getMessage(), true);
+		if (rules.get(0).execute(student)) {// If the student can graduate in time, there is no need for testing 
+											// IntegralizationRule and IntegralizationPlanPeriodsCrRespectedRUle
+			answer.put(rules.get(0).getMessage(), true);// The student can graduate in time 
+			answer.put(rules.get(1).getMessage(), false);// Then IntegralizationPlan is not needed
+			answer.put(rules.get(2).getMessage(), true);// And IntegralizationPlanPeriodsRespected is also not needed
 			for (int i = 3; i < rules.size(); i++) {
 				answer.put(rules.get(i).getMessage(), rules.get(i).execute(student));
 			}
-		} else
+		} else // Its possible to student to not respect GraduationTime and not need IntegralizationPlan
 			for (int i = 0; i < rules.size(); i++)
 				answer.put(rules.get(i).getMessage(), rules.get(i).execute(student));
 		return answer;

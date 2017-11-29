@@ -11,6 +11,8 @@ import java.util.Map;
 
 import br.com.pm_2017.si_grade.controller.StudentController;
 import br.com.pm_2017.si_grade.model.Student;
+import br.com.pm_2017.si_grade.validation.StudentValidator;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -22,47 +24,54 @@ public class DesktopApp {
 
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF files", "pdf");
 		String filePathPDF = openFile(filter);
-
+		Student student = null;
 		if (filePathPDF != null) {
-			List<String> document = studentController.generateDocumentLinesList(filePathPDF);
-			Student student = studentController.getStudentFromPdf(document);
-
+			try {
+				student = studentController.getStudentFromPdf(filePathPDF);
+			} catch (NullPointerException npe) {
+				DesktopApp.main(args);
+				return;
+			}
+			if (StudentValidator.execute(student)) {
+				DesktopApp.main(args);
+			}
+			
 			Map<String, Boolean> rulesCache = studentController.generateRuleMap(student);
 
 			filter = new FileNameExtensionFilter("SVG files", "svg");
 			String filePathSVG = openFile(filter);
 
 			if (filePathSVG != null) {
-				List<String> lines = studentController.generateSvgStringList(filePathSVG);
 
-				String linesAsString = studentController.generateColoredSvg(student, lines);
+				final String COLORED_AND_FORMATTED_SVG = studentController.generateColoredSvg(student,
+						studentController.generateSvgStringList(filePathSVG));
 
-				List<String> html = studentController.generateHtmlLinesList("si_grade.html");
+				final List<String> RAW_HTML = studentController.generateHtmlLinesList("si_grade.html");
 
-				List<String> finalHtml = studentController.generateHtmlPageForStudent(html, student, rulesCache,
-						linesAsString);
-				String finalHtmlAsString = String.join("\n", finalHtml);
+				final List<String> PROCESSED_HTML = studentController.generateHtmlPageForStudent(RAW_HTML, student,
+						rulesCache, COLORED_AND_FORMATTED_SVG);
+				final String PROCESSED_AND_FORMATTED_HTML = String.join("\n", PROCESSED_HTML);
 				// System.out.println(finalHtmlAsString);
 				File file = File.createTempFile("grade-" + student.getName(), ".html");
 				// Delete temp file when program exits.
 				file.deleteOnExit();
 				// Write to temp file
 				BufferedWriter out = new BufferedWriter(new FileWriter(file));
-				out.write(finalHtmlAsString);
+				out.write(PROCESSED_AND_FORMATTED_HTML);
 				out.close();
 				String os = System.getProperty("os.name").toLowerCase();
-				if (Desktop.isDesktopSupported()) {
+				if (Desktop.isDesktopSupported()) { // is windows?
 					Desktop.getDesktop().browse(file.toURI());
-				}else {
+				} else {
 					Runtime runtime = Runtime.getRuntime();
-					if(os.indexOf("mac") >= 0) {
+					if (os.indexOf("mac") >= 0) { // is mac?
 						runtime.exec("open " + file.toURI());
-					}else {
-			            try {
-			                runtime.exec("xdg-open " + file.toURI());
-			            } catch (IOException e) {
-			                e.printStackTrace();
-			            }
+					} else {
+						try {
+							runtime.exec("xdg-open " + file.toURI()); // linux
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			}

@@ -13,10 +13,10 @@ import br.com.pm_2017.si_grade.utils.StudentFieldsConstants;
  * The reflectedRule class points to the exactly rule hat needs to be
  * instantiated in execution time
  */
-public class IntegralizationRule implements Rule {
+public class IntegralizationPlanNeededRule implements Rule {
 	ReflectedRule reflected;
 
-	public IntegralizationRule() {
+	public IntegralizationPlanNeededRule() {
 		this.reflected = new ReflectedRuleImpl();
 	}
 

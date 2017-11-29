@@ -31,9 +31,10 @@ public class StudentController {
 	 * @param pdfPath
 	 * @return
 	 */
-	public Student getStudentFromPdf(List<String> document) {
-		Student student = StudentParser.generateStudent(document);
-		student.setDisciplines(generateDisciplineMap(document));
+	public Student getStudentFromPdf(String filePathPDF) {
+		List<String> pdfLinesList = generateDocumentLinesList(filePathPDF);
+		Student student = StudentParser.generateStudent( pdfLinesList );
+		student.setDisciplines( generateDisciplineMap(pdfLinesList) );
 		return student;
 	}
 
@@ -50,11 +51,9 @@ public class StudentController {
 	}
 
 	/**
-	 * Uses a implementation of scanner interface to find and run on the package of
-	 * rules in execution time the rules marked by the Use annotation. Applies the
-	 * rules to the student passed creating a map with the message and the boolean
-	 * value. The boolean value is true if the rule is applied to the student
-	 * 
+	 * Uses a implementation of rulesCache to return a map of String(property), 
+	 * boolean(answer from execute method of rule).
+	
 	 * @param student
 	 * @return Map<String, Boolean>
 	 */
@@ -63,15 +62,15 @@ public class StudentController {
 	}
 
 	/**
-	 * Generates List<String> with the historic lines
+	 * Generates List with the historic lines
 	 * 
-	 * @return List<String> with the pdf lines
+	 * @return List with the pdf lines
 	 */
-	public List<String> generateDocumentLinesList(String pdfPath) {
+	private List<String> generateDocumentLinesList(String pdfPath) {
 		PdfDAO pdfDAO = new PdfDAO(pdfPath);
-		List<String> disciplines = pdfDAO.getDocumentStringList();
+		List<String> lines = pdfDAO.getDocumentStringList();
 		pdfDAO.closePdfDocument();
-		return disciplines;
+		return lines;
 	}
 
 	/**

@@ -13,7 +13,7 @@ public class StudentValidator{
 	 * @param student
 	 * @return true if has errors
 	 */
-	public boolean execute(Student student) {
+	public static boolean execute(Student student) {
 		if( ( checkStudentNullError(student) ) || ( checkStudentMapError(student) ) || 
 				( checkStudentNameError(student) ) || ( checkStudentResitryError(student) ) || 
 				( checkStudentPeriodsCrError(student) ) )
@@ -22,25 +22,25 @@ public class StudentValidator{
 			return false;
 	}
 	
-	public boolean checkStudentNullError(Student student) {
+	static boolean checkStudentNullError(Student student) {
 		if(student == null)
 			return true;
 		else 
 			return false;
 	}
-	public boolean checkStudentMapError(Student student) {
+	static boolean checkStudentMapError(Student student) {
 		if( ( student.getDisciplines() == null ) || ( student.getDisciplines().isEmpty() ) )
 			return true;
 		else 
 			return false;
 	}
-	public boolean checkStudentNameError(Student student) {
+	static boolean checkStudentNameError(Student student) {
 		if( ( student.getName() == null ) || ( student.getName().length() == 0 ) || ( student.getName().isEmpty() ) )
 			return true;
 		else 
 			return false;
 	}
-	public boolean checkStudentResitryError(Student student) {
+	static boolean checkStudentResitryError(Student student) {
 		if(  ( student.getRegistry() == null ) || 
 				( student.getRegistry().length() != StudentFieldsConstants.REGISTRY_LENGTH.getValue() ) || 
 				( student.getRegistry().isEmpty() ) )
@@ -48,17 +48,11 @@ public class StudentValidator{
 		else 
 			return false;
 	}
-	public boolean checkStudentPeriodsCrError(Student student) {
+	static boolean checkStudentPeriodsCrError(Student student) {
 		if( ( student.getPeriodsCr() == null ) || ( student.getPeriodsCr().isEmpty() ) || 
 				( student.getPeriodsCr().size() == 0 ) )
 			return true;
 		else
 			return false;
-	}
-	public boolean checkStudentYearOfRegistryError(Student student) {
-		if(student.getYearOfRegistry() < StudentFieldsConstants.MIN_YEAR_OF_REGISTRY.getValue())
-			return true;
-		else
-			return true;
 	}
 }
