@@ -15,7 +15,6 @@ public class Student {
 	private String name;
 	private float cra;
 	private String registry;
-	private boolean isOnInactivePeriod;
 	private List<Float> periodsCr;
 	private int yearOfRegistry;
 	Map<String, Discipline> disciplines;
@@ -51,15 +50,6 @@ public class Student {
 	public void setRegistry(String registry) {
 		this.registry = registry;
 	}
-
-	public int getNumberOfElective() {
-		return numberOfElective;
-	}
-
-	public void setOnInactivePeriod(boolean isOnInactivePeriod) {
-		this.isOnInactivePeriod = isOnInactivePeriod;
-	}
-
 	public List<Float> getPeriodsCr() {
 		return periodsCr;
 	}
@@ -83,14 +73,6 @@ public class Student {
 	public void setDisciplines(Map<String, Discipline> disciplines) {
 		this.disciplines = disciplines;
 	}
-
-	@Override
-	public String toString() {
-		return "Student [name=" + name + ", cra=" + cra + ", registry=" + registry + ", numberOfElective="
-				+ numberOfElective + ", periodsCr=" + periodsCr + ", yearOfRegistry=" + yearOfRegistry
-				+ ", disciplines=" + disciplines + "]";
-	}
-
 	/**
 	 * Count the remaining disciplines for a student to graduate
 	 * 

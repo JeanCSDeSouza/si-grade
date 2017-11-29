@@ -47,16 +47,13 @@ public class StudentParserTest {
 	
 	@Test
 	public void generateDisciplinesMapEqualsTest() {
-		Student mocked = mock(Student.class);
-		when(mocked.toString()).thenReturn
-		("Student [name=JEAN CARLOS SILVA DE SOUZA, cra=7.66, resgistry=20161210015, periodsCr=[7.66, 7.66, 7.66, 0.0]]");
 
 		Student test = StudentParser.generateStudent(toMock);
 		assertNotNull( "Should not be null", test);
 		
-		//assertEquals("failure - strings are not equal", mocked.toString(), test.toString());
 		
-		
+		assertEquals("failure - String name should be the same", "JEAN CARLOS SILVA DE SOUZA", test.getName());
+		assertEquals((float)7.6600, test.getCra(), 0.0001);
 		assertEquals("failure - int number entries in periodsCR aren't equal", 4, test.getPeriodsCr().size());
 		assertEquals("failure - int value of registry lenth should be 11 ", 11, test.getRegistry().length());
 	}

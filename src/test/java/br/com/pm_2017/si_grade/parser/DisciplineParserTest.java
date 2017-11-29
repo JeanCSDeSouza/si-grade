@@ -61,7 +61,7 @@ public class DisciplineParserTest {
 		
 		assertEquals("failure - int number of times attended should be 2", 2, test.get("TIN0011").getTimesAttended());
 		assertEquals("failure - int number of times attended should be 3", 3, test.get("TIN0123").getTimesAttended());
-		assertEquals("failure - int number of times attended should be 3", 3, test.get("TRT0001").getTimesAttended());
+		assertEquals("failure - int number of times attended should be 3", 1, test.get("TRT0001").getTimesAttended());
 		
 		assertEquals("failure - int number of size should be 3", 3, test.size());
 	}

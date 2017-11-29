@@ -46,13 +46,24 @@ public class DesktopApp {
 				File file = File.createTempFile("grade-" + student.getName(), ".html");
 				// Delete temp file when program exits.
 				file.deleteOnExit();
-
 				// Write to temp file
 				BufferedWriter out = new BufferedWriter(new FileWriter(file));
 				out.write(finalHtmlAsString);
 				out.close();
+				String os = System.getProperty("os.name").toLowerCase();
 				if (Desktop.isDesktopSupported()) {
 					Desktop.getDesktop().browse(file.toURI());
+				}else {
+					Runtime runtime = Runtime.getRuntime();
+					if(os.indexOf("mac") >= 0) {
+						runtime.exec("open " + file.toURI());
+					}else {
+			            try {
+			                runtime.exec("xdg-open " + file.toURI());
+			            } catch (IOException e) {
+			                e.printStackTrace();
+			            }
+					}
 				}
 			}
 		}
