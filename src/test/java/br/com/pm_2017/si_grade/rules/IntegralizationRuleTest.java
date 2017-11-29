@@ -32,11 +32,13 @@ public class IntegralizationRuleTest {
 
 		when(periodsCr.size()).thenReturn(7);
 		Student student = mock(Student.class);
+		when(student.numberOfValidPeriods()).thenReturn(7);
 		when(student.getYearOfRegistry()).thenReturn(2014);
 		when(student.getPeriodsCr()).thenReturn(periodsCr);
 		assertEquals("Failure - should be true", true, ir.execute(student));
 		when(periodsCr.size()).thenReturn(8);
-		assertEquals("Failure - should be true", true, ir.execute(student));
+		when(student.numberOfValidPeriods()).thenReturn(7);
+		assertEquals("Failure - should be true", true, ir.execute(student) );
 	}
 
 	@SuppressWarnings("unchecked")
@@ -44,14 +46,17 @@ public class IntegralizationRuleTest {
 	public void IntegralizationRuleFalseTest() {
 		List<Float> periodsCr = mock(ArrayList.class);
 		when(periodsCr.size()).thenReturn(6);
+		when(periodsCr.size()).thenReturn(6);
 		Student student = mock(Student.class);
 		when(student.getYearOfRegistry()).thenReturn(2014);
 		when(student.getPeriodsCr()).thenReturn(periodsCr);
 		assertEquals("Failure - should be true", false, ir.execute(student));
 		when(periodsCr.size()).thenReturn(5);
-		assertEquals("Failure - should be true", false, ir.execute(student));
+		when(periodsCr.size()).thenReturn(5);
+		assertEquals("Failure - should be true", false, ir.execute(student) );
 		when(periodsCr.size()).thenReturn(0);
-		assertEquals("Failure - should be true", false, ir.execute(student));
+		when(periodsCr.size()).thenReturn(0);
+		assertEquals("Failure - should be true", false, ir.execute(student) );
 	}
 
 	@Test

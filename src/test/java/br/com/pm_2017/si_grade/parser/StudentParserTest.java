@@ -21,7 +21,6 @@ import br.com.pm_2017.si_grade.model.Student;
 public class StudentParserTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
-	StudentParser sp;
 	List<String> toMock;
 	
 	@Before

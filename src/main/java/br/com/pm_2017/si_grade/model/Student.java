@@ -15,7 +15,7 @@ public class Student {
 	private String name;
 	private float cra;
 	private String registry;
-	private int numberOfElective;
+	private boolean isOnInactivePeriod;
 	private List<Float> periodsCr;
 	private int yearOfRegistry;
 	Map<String, Discipline> disciplines;
@@ -56,8 +56,8 @@ public class Student {
 		return numberOfElective;
 	}
 
-	public void setNumberOfElective(int numberOfElective) {
-		this.numberOfElective = numberOfElective;
+	public void setOnInactivePeriod(boolean isOnInactivePeriod) {
+		this.isOnInactivePeriod = isOnInactivePeriod;
 	}
 
 	public List<Float> getPeriodsCr() {

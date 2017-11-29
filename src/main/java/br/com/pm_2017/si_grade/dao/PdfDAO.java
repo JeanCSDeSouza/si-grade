@@ -3,7 +3,7 @@ package br.com.pm_2017.si_grade.dao;
 import java.io.IOException;
 import java.util.List;
 
-import br.com.pm_2017.si_grade.exceptions.PdfProblemException;
+import br.com.pm_2017.si_grade.exceptions.UncloseablePDF;
 import br.com.pm_2017.si_grade.io.PDFIO;
 
 /**
@@ -34,7 +34,7 @@ public class PdfDAO {
 		try {
 			pdfio.closeDocument();
 		} catch (IOException e) {
-			throw new PdfProblemException("No pdf here to close");
+			throw new UncloseablePDF("No pdf here to close"); 
 		}
 	}
 

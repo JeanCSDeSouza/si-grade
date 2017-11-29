@@ -14,7 +14,9 @@ public class StudentValidator{
 	 * @return true if has errors
 	 */
 	public boolean execute(Student student) {
-		if( ( checkStudentNullError(student) ) || ( checkStudentMapError(student) ) || ( checkStudentNameError(student) ) || ( checkStudentResitryError(student) ) || ( checkStudentPeriodsCrError(student) ) )
+		if( ( checkStudentNullError(student) ) || ( checkStudentMapError(student) ) || 
+				( checkStudentNameError(student) ) || ( checkStudentResitryError(student) ) || 
+				( checkStudentPeriodsCrError(student) ) )
 			return true;
 		else
 			return false;
@@ -39,13 +41,16 @@ public class StudentValidator{
 			return false;
 	}
 	public boolean checkStudentResitryError(Student student) {
-		if(  ( student.getRegistry() == null ) || ( student.getRegistry().length() != StudentFieldsConstants.REGISTRY_LENGTH.getValue() ) || ( student.getRegistry().isEmpty() ) )
+		if(  ( student.getRegistry() == null ) || 
+				( student.getRegistry().length() != StudentFieldsConstants.REGISTRY_LENGTH.getValue() ) || 
+				( student.getRegistry().isEmpty() ) )
 			return true;
 		else 
 			return false;
 	}
 	public boolean checkStudentPeriodsCrError(Student student) {
-		if( ( student.getPeriodsCr() == null ) || ( student.getPeriodsCr().isEmpty() ) || ( student.getPeriodsCr().size() == 0 ) )
+		if( ( student.getPeriodsCr() == null ) || ( student.getPeriodsCr().isEmpty() ) || 
+				( student.getPeriodsCr().size() == 0 ) )
 			return true;
 		else
 			return false;

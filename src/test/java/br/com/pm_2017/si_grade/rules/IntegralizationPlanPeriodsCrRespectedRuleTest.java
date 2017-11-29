@@ -66,7 +66,6 @@ public class IntegralizationPlanPeriodsCrRespectedRuleTest {
 		when(student.getPeriodsCr()).thenReturn(periodsCr);
 		when(student.getYearOfRegistry()).thenReturn(2013);
 		assertEquals("Failure - should be true", true, ippcrr.execute(student));
-		verify(periodsCr, times(1)).get(anyInt());
 	}
 
 	@Test
@@ -76,9 +75,10 @@ public class IntegralizationPlanPeriodsCrRespectedRuleTest {
 		when(periodsCr.size()).thenReturn(13);
 		when(periodsCr.get(anyInt())).thenReturn((float) 4.99);
 		Student student = mock(Student.class);
+		when(student.numberOfValidPeriods()).thenReturn(13);
 		when(student.getPeriodsCr()).thenReturn(periodsCr);
 		when(student.getYearOfRegistry()).thenReturn(2013);
-		assertEquals("Failure - should be true", false, ippcrr.execute(student));
+		assertEquals("Failure - should be false", false, ippcrr.execute(student));
 		verify(periodsCr, times(1)).get(anyInt());
 	}
 

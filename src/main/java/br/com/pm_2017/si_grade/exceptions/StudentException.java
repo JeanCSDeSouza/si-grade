@@ -4,13 +4,11 @@ package br.com.pm_2017.si_grade.exceptions;
  * Marks any problem with student as runtime exception
  *
  */
-public class StudentException extends RuntimeException {
-
+public class StudentException extends RuntimeException{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4369132438512114407L;
-
+	private static final long serialVersionUID = -1800616277412923483L;
 	public StudentException(String msg) {
 		super(msg);
 	}
